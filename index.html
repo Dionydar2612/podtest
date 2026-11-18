@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="th"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a2233">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🃏%3C/text%3E%3C/svg%3E">
+<title>การ์ดทั้งหมด</title>
+<link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/lobby.css?v=1">
+<style>
+:root{--bg:#fbfbf7;--ink:#111;--card:#fff;--line:#bfe3ea;--gold:#ffc20e;--mut:#666;--pap:#fff8ec;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;font-family:'Mali','Noto Sans Thai',Tahoma,sans-serif;color:var(--ink);min-height:100vh}
+main{max-width:1200px;margin:0 auto;padding:20px 16px 60px}
+h1{font-size:2rem;margin:0 0 12px}
+.box{border:3px solid var(--ink);border-radius:14px;background:var(--card);box-shadow:4px 4px 0 var(--ink)}
+input,select{font:inherit;color:var(--ink);background:var(--card);border:3px solid var(--ink);border-radius:12px;padding:10px 14px;width:100%}
+.search{box-shadow:4px 4px 0 var(--ink);margin-bottom:12px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.chip{font:inherit;color:var(--ink);background:var(--card);border:2px solid var(--ink);border-radius:99px;padding:4px 14px;cursor:pointer}
+.chip.on{background:var(--ink);color:var(--bg)}
+.mfbox{padding:16px;margin-bottom:14px}
+.srch{display:flex;gap:10px;align-items:flex-start;margin-bottom:12px}.srch .search{margin-bottom:0;flex:1;min-width:0}
+#clr{white-space:nowrap;align-self:stretch;font-weight:700;padding:4px 16px;box-shadow:3px 3px 0 var(--ink)}#clr[hidden]{display:none}
+@media(max-width:560px){.srch{flex-direction:column}#clr{align-self:flex-start;padding:4px 14px}}
+.cnt{text-align:center;color:var(--mut);margin:10px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(var(--gw,150px),1fr));gap:12px}
+.grid button{border:0;background:none;padding:0;cursor:pointer;border-radius:10px;transition:transform .12s;color:var(--ink);font:inherit}
+.grid button:hover{transform:translateY(-4px)}
+.grid img,.big img{width:100%;display:block;border-radius:10px;border:2px solid var(--ink);background:var(--pap)}
+.empty{grid-column:1/-1;text-align:center;color:var(--mut);padding:40px}
+#modal{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;padding:calc(12px + env(safe-area-inset-top,0px)) 12px calc(12px + env(safe-area-inset-bottom,0px));z-index:9}
+#modal.open{display:flex}
+.dlg{background:var(--card);border-radius:18px;max-width:900px;width:100%;max-height:100%;overflow:auto;padding:24px;display:grid;grid-template-columns:minmax(0,380px) 1fr;gap:24px;position:relative}
+.x{position:absolute;top:12px;right:12px;width:40px;height:40px;border-radius:50%;border:2px solid var(--ink);background:var(--card);color:var(--ink);font-size:20px;cursor:pointer}
+.nav{position:fixed;top:50%;width:46px;height:46px;border-radius:50%;border:2px solid var(--ink);background:#fff;color:#111;font-size:22px;cursor:pointer;box-shadow:2px 2px 0 #111;transform:translateY(-50%)}
+#prev{left:8px}#next{right:8px}
+.dlg h2{margin:0 44px 4px 0;font-size:1.7rem}
+.code{color:var(--mut);margin-bottom:10px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.tag{border-radius:99px;padding:3px 14px;font-weight:700;color:#fff;background:#444;font-size:.9rem}
+.tag.gold{background:var(--gold);color:#111}
+.tag.r-RR{background:#1b4aa8}.tag.r-SR{background:#6a2fb0}.tag.r-SSR{background:#c0121f}
+h3{color:var(--mut);margin:10px 0 6px}
+@media(max-width:720px){.dlg{grid-template-columns:1fr;padding:16px}.big{max-width:320px;margin:0 auto}h1{font-size:1.5rem}}
+.modes{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:12px}
+.modes .sp{flex:1}.modes label{display:flex;gap:6px;align-items:center;font-weight:700}.modes input[type=range]{width:110px;padding:0;border:0;accent-color:var(--gold)}
+.grid.list{display:flex;flex-direction:column;gap:8px}
+.grid .tile{position:relative;display:block}
+.rb{position:absolute;top:5px;right:5px;min-width:26px;height:26px;padding:0 8px;border-radius:99px;background:var(--gold);color:#111;border:2px solid #111;font-weight:700;font-size:.8rem;display:flex;align-items:center;justify-content:center}
+.cap{display:block;font-size:.78rem;font-weight:700;margin-top:3px;text-align:center;line-height:1.2}
+.row-i{display:flex!important;gap:12px;align-items:center;text-align:left;width:100%;padding:8px!important;border:2px solid var(--ink)!important;border-radius:12px!important;background:var(--card)!important;color:var(--ink);font:inherit;box-shadow:3px 3px 0 var(--ink)}
+.row-i:hover{transform:none!important;background:var(--pap)!important}
+.row-i img{width:72px;flex:none}.row-i .ri{flex:1;min-width:0}.row-i b{font-size:1.02rem}.row-i .mt{font-size:.8rem;color:var(--mut)}
+.tbl-w{overflow-x:auto;border:3px solid var(--ink);border-radius:14px;background:var(--card);box-shadow:4px 4px 0 var(--ink)}
+table.ct{border-collapse:collapse;width:100%;min-width:480px}
+.ct th,.ct td{padding:6px 10px;text-align:left;border-bottom:1px solid var(--mut);white-space:nowrap}
+.ct th{position:sticky;top:0;background:var(--ink);color:var(--bg)}
+.ct tr[data-n]{cursor:pointer}.ct tr[data-n]:hover td{background:var(--pap)}
+.ct td img{width:30px;border-radius:4px;border:1px solid var(--ink);vertical-align:middle}
+.ct td.num{text-align:center}
+.gh{grid-column:1/-1;margin:14px 0 2px;font-size:1.2rem;font-weight:700;border-bottom:3px solid var(--ink);padding-bottom:2px;display:flex;justify-content:space-between}
+.gh small{color:var(--mut);font-weight:400}
+[hidden]{display:none!important}
+.meta{margin-top:14px;padding-top:10px;border-top:1px dashed var(--mut);font-size:.85rem;color:var(--mut)}
+</style></head><body><main>
+<h1>การ์ดทั้งหมด</h1>
+<div class="srch"><input id="q" class="search" placeholder="ค้นหาด้วยชื่อ หรือเลขการ์ด… (เว้นวรรคเพื่อค้นหลายคำพร้อมกัน)"><button id="clr" class="chip" type="button" hidden>✕ ล้างการค้นหา</button></div>
+<div class="row"><span>เรียงตาม:</span><span id="sorts"></span></div>
+<div class="modes"><span>มุมมอง:</span><span id="modeBtns"></span><span class="sp"></span>
+<label id="szw">ขนาด <input id="sz" type="range" min="90" max="300" step="10" value="150"></label></div>
+<div class="box mfbox" id="mfBox"></div>
+<div class="cnt" id="cnt"></div>
+<div class="grid" id="grid"></div>
+</main>
+<div id="modal"><button class="nav" id="prev" aria-label="ก่อนหน้า">‹</button><div class="dlg box" id="dlg"></div><button class="nav" id="next" aria-label="ถัดไป">›</button></div>
+<script src="cards.js"></script>
+<script src="mfilter.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const MFS={};let SPEC=[];
+const SORTS={no:"ซีรีส์",name:"ชื่อ",rar:"ความหายาก"};
+const MODES={gallery:"🖼 แกลเลอรี",list:"📃 รายการ",table:"📊 ตาราง",series:"📚 แยกตามซีรีส์"};
+const RORD={"ปกติ":0,RR:1,SR:2,SSR:3};
+let ALL=[],list=[],cur=0,sort="no",mode="gallery",gw=150;
+try{mode=localStorage.getItem("cl-mode")||"gallery";gw=+localStorage.getItem("cl-gw")||150}catch(e){}
+if(!MODES[mode])mode="gallery";
+const esc=s=>String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+const thumb=c=>`images/thumb/${c.key}.webp`,full=c=>`images/full/${c.key}.webp`;
+const pic=(c,big)=>`<img ${big?"":'loading="lazy" '}src="${big?full(c):thumb(c)}" alt="${esc(c.name)}">`;
+const rbadge=c=>c.rar!=="ปกติ"?c.rar:"";
+function init(){
+ ALL=CARDS.map((c,i)=>({...c,i}));
+ const total={};ALL.forEach(c=>{(total[c.deck]=total[c.deck]||new Set()).add(c.no)});
+ ALL.forEach(c=>{c.total=total[c.deck].size;c.code=`${c.deck}-${c.no}`});
+ const deckItems=[...new Set(ALL.map(c=>c.deck))].map(v=>({v}));
+ const rarItems=Object.keys(RORD).filter(r=>ALL.some(c=>c.rar===r)).map(v=>({v}));
+ SPEC=MF.prune([
+  {t:"chips",k:"deck",label:"ซีรีส์",items:deckItems},
+  {t:"chips",k:"rar",label:"ความหายาก",items:rarItems}]);
+ $("mfBox").innerHTML=MF.render(SPEC,MFS);MFSYNC=MF.bind($("mfBox"),SPEC,MFS,render);
+ $("mfBox").hidden=!SPEC.length;
+ $("clr").onclick=()=>{$("q").value="";MF.reset(MFS);MFSYNC();render()};
+ $("sorts").innerHTML=Object.entries(SORTS).map(([k,v])=>`<button class="chip" data-s="${k}">${v}</button>`).join(" ");
+ $("sorts").onclick=e=>{if(e.target.dataset.s){sort=e.target.dataset.s;render()}};
+ $("grid").onclick=e=>{const b=e.target.closest("[data-n]");if(b)show(+b.dataset.n)};
+ $("modeBtns").innerHTML=Object.entries(MODES).map(([k,v])=>`<button class="chip" data-m="${k}">${v}</button>`).join(" ");
+ $("modeBtns").onclick=e=>{const k=e.target.dataset.m;if(k){mode=k;try{localStorage.setItem("cl-mode",k)}catch(_){}render()}};
+ $("sz").value=gw;$("sz").oninput=()=>{gw=+$("sz").value;try{localStorage.setItem("cl-gw",gw)}catch(_){}$("grid").style.setProperty("--gw",gw+"px")};
+ $("q").addEventListener("input",render);
+ $("prev").onclick=()=>show(cur-1);$("next").onclick=()=>show(cur+1);
+ $("modal").onclick=e=>{if(e.target.id==="modal")closeM()};
+ addEventListener("keydown",e=>{if(!$("modal").classList.contains("open"))return;if(e.key==="Escape")closeM();if(e.key==="ArrowLeft")show(cur-1);if(e.key==="ArrowRight")show(cur+1)});
+ render();
+}
+let MFSYNC=()=>{};
+function render(){
+ const terms=$("q").value.trim().toLowerCase().split(/\s+/).filter(Boolean);
+ list=ALL.filter(c=>MF.has(MFS,"deck",[c.deck])&&MF.has(MFS,"rar",[c.rar])
+  &&(!terms.length||(h=>terms.every(t=>h.includes(t)))([c.no,c.name,c.code,c.rar].join(" ").toLowerCase())));
+ const nf=MF.count(SPEC,MFS)+(terms.length?1:0);$("clr").hidden=!nf;$("clr").textContent="✕ ล้างการค้นหา"+(nf?` (${nf})`:"");
+ list.sort({no:(a,b)=>a.i-b.i,name:(a,b)=>a.name.localeCompare(b.name,"th")||a.i-b.i,rar:(a,b)=>RORD[b.rar]-RORD[a.rar]||a.i-b.i}[sort]);
+ document.querySelectorAll("#sorts .chip").forEach(b=>b.classList.toggle("on",b.dataset.s===sort));
+ $("cnt").innerHTML=`แสดง <b>${list.length}</b> จาก <b>${ALL.length}</b> การ์ด`;
+ document.querySelectorAll("#modeBtns .chip").forEach(b=>b.classList.toggle("on",b.dataset.m===mode));
+ $("szw").hidden=!(mode==="gallery"||mode==="series");
+ const g=$("grid");g.className="grid"+(mode==="list"?" list":"");g.style.setProperty("--gw",gw+"px");
+ const tile=(c,n)=>`<button class="tile" data-n="${n}" aria-label="${esc(c.name)}">${pic(c)}${rbadge(c)?`<span class="rb">${c.rar}</span>`:""}${mode!=="gallery"||gw>=130?`<span class="cap">${esc(c.name)}</span>`:""}</button>`;
+ if(!list.length)g.innerHTML='<div class="empty">ไม่พบการ์ดที่ตรงกับเงื่อนไข</div>';
+ else if(mode==="list")g.innerHTML=list.map((c,n)=>`<button class="row-i" data-n="${n}">${pic(c)}<span class="ri"><b>${esc(c.name)}</b> <span class="mt">${c.code}${rbadge(c)?" · "+c.rar:""}</span></span></button>`).join("");
+ else if(mode==="table")g.innerHTML=`<div class="tbl-w"><table class="ct"><thead><tr><th></th><th>รหัส</th><th>ชื่อ</th><th>ซีรีส์</th><th>Rarity</th></tr></thead><tbody>${list.map((c,n)=>`<tr data-n="${n}"><td><img loading="lazy" src="${thumb(c)}" alt=""></td><td>${c.code}</td><td><b>${esc(c.name)}</b></td><td>${c.deck}</td><td class="num">${c.rar}</td></tr>`).join("")}</tbody></table></div>`;
+ else if(mode==="series"){let h="",last="";list.forEach((c,n)=>{if(c.deck!==last){last=c.deck;const t=list.filter(x=>x.deck===c.deck);h+=`<div class="gh"><span>${c.deck}</span><small>${t.length} ใบ</small></div>`}h+=tile(c,n)});g.innerHTML=h}
+ else g.innerHTML=list.map(tile).join("");
+}
+function show(n){
+ cur=(n+list.length)%list.length;const c=list[cur];
+ $("dlg").innerHTML=`<button class="x" onclick="closeM()" aria-label="ปิด">✕</button><div class="big">${pic(c,true)}</div><div><h2>${esc(c.name)}</h2><div class="code">${c.code}/${c.total}</div><div class="tags"><span class="tag gold">${c.deck}</span>${rbadge(c)?`<span class="tag r-${c.rar}">Rarity ${c.rar}</span>`:`<span class="tag">ปกติ</span>`}</div><div class="meta">${c.code}${rbadge(c)?" · "+c.rar:""} · ใบที่ ${cur+1} จาก ${list.length}</div></div>`;
+ $("modal").classList.add("open");
+}
+function closeM(){$("modal").classList.remove("open")}
+init();
+</script>
+</body></html>
