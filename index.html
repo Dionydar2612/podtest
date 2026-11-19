@@ -78,23 +78,103 @@ table.ct{border-collapse:collapse;width:100%;min-width:480px}
 .gh small{color:var(--mut);font-weight:400}
 [hidden]{display:none!important}
 .meta{margin-top:14px;padding-top:10px;border-top:1px dashed var(--mut);font-size:.85rem;color:var(--mut)}
-</style></head><body><main>
+</style>
+<style>
+.nav2{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 14px}
+.nav2 a{font:inherit;font-weight:700;color:var(--ink);background:var(--card);border:2px solid var(--ink);border-radius:99px;padding:6px 18px;text-decoration:none}
+.nav2 a.on{background:var(--gold);color:#111}
+.kw{display:inline-block;margin-right:6px;padding:0 9px;border-radius:7px;font-weight:700;font-size:.8rem;color:#fff;background:#1c7fb5}
+.kw.ACT{background:#4a3fa8}.kw.CONT{background:#b5541c}.kw.Awaken{background:#111;color:var(--gold);border:1px solid var(--gold)}.kw.tn{background:transparent;color:var(--ink);border:1px solid var(--mut);margin-left:2px}
+.orb{display:inline-block;width:.85em;height:.85em;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#ffc20e 60%,#e0701c);border:1px solid #111;vertical-align:-1px;margin:0 1px}
+.ce{display:inline-flex;align-items:center;justify-content:center;width:1.25em;height:1.25em;border-radius:50%;border:1.5px solid var(--ink);font-size:.75rem;font-weight:700;vertical-align:1px}
+.fx{background:rgba(0,0,0,.18);border:1px solid var(--mut);border-radius:12px;padding:8px 14px;margin:10px 0;line-height:1.55}.fx p{margin:5px 0}.fx.none{color:var(--mut);text-align:center}
+.sts{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0}.sts div{border:2px solid var(--ink);border-radius:10px;padding:2px 14px;text-align:center;background:var(--card)}.sts b{display:block;font-size:.72rem;color:var(--mut)}.sts span{font-weight:700;font-size:1.15rem}
+.tag.c{color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.db{display:grid;grid-template-columns:minmax(0,1fr) minmax(340px,440px);gap:16px;align-items:start}
+.dbr{position:sticky;top:8px;max-height:calc(100vh - 16px);overflow:auto;padding:16px}.dbr h2{margin:0 0 10px}
+.dtop{display:flex;gap:10px;margin-bottom:12px}.dtop .search{margin:0;flex:1;min-width:0}
+.fil{padding:14px;margin-bottom:12px;display:grid;gap:12px}
+.tg{display:flex;flex-wrap:wrap;gap:8px}
+.rgs3{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px}
+.rgh{display:flex;justify-content:space-between;font-weight:700;margin-bottom:2px}.rgh b{color:var(--gold)}
+.rgs{position:relative;height:26px;--a:0%;--b:100%}
+.rgs::before{content:"";position:absolute;left:0;right:0;top:11px;height:5px;border-radius:9px;background:linear-gradient(90deg,var(--mut) var(--a),var(--gold) var(--a),var(--gold) var(--b),var(--mut) var(--b));opacity:.9}
+.rgs input{position:absolute;left:0;top:0;width:100%;height:26px;margin:0;padding:0;border:0;background:none;pointer-events:none;-webkit-appearance:none;appearance:none}
+.rgs input::-webkit-slider-thumb{-webkit-appearance:none;pointer-events:auto;width:20px;height:20px;border-radius:50%;background:#fff;border:3px solid #111;cursor:pointer}
+.rgs input::-moz-range-thumb{pointer-events:auto;width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid #111;cursor:pointer}
+.sels{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px}.sels select{padding:8px 10px}
+.zones{display:flex;gap:8px;justify-content:center;margin:6px 0 4px}
+.zones .chip{padding:8px 20px;font-weight:700}.zones .chip.on{background:#d62f2f;color:#fff;border-color:#d62f2f}
+.dgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(125px,1fr));gap:12px;margin-top:10px}
+.dt{position:relative;min-width:0}
+.dt .im,.mt .im{position:relative;display:block;width:100%;padding:0;border:0;background:none;cursor:pointer;border-radius:10px}
+.dt img,.mt img{width:100%;display:block;border-radius:10px;border:2px solid var(--ink);background:var(--pap)}
+.dt.in img,.mt img{border-color:var(--gold)}
+.star{position:absolute;top:6px;right:6px;width:28px;height:28px;border-radius:50%;border:2px solid #111;background:#fff;color:#111;font-size:16px;line-height:1;padding:0;cursor:pointer}.star.on{background:var(--gold)}
+.cn{position:absolute;left:6px;bottom:6px;min-width:28px;height:28px;padding:0 8px;border-radius:99px;background:var(--gold);color:#111;border:2px solid #111;font-weight:700;display:flex;align-items:center;justify-content:center}.cn.z{display:none}
+.stp{display:flex;gap:6px;margin-top:5px}.stp button{flex:1;height:34px;border:0;border-radius:8px;font:700 1.2rem/1 sans-serif;color:#fff;cursor:pointer}
+.stp .m{background:#8a8f96}.stp .p{background:#26a844}.stp button:disabled{opacity:.35;cursor:not-allowed}
+.dnm{font-size:.78rem;font-weight:700;text-align:center;margin-top:3px;line-height:1.2}.dnm small{display:block;color:var(--mut);font-weight:400}
+.sum{text-align:center;margin:4px 0 8px;font-size:1.05rem}.sum b{font-size:1.25rem}.sum small{color:var(--mut)}
+.msg{border-radius:12px;padding:8px 12px;margin:8px 0;font-size:.9rem;border:1px solid}.msg.bad{background:rgba(214,47,47,.15);border-color:#d62f2f;color:#ff8a8a}.msg.ok{background:rgba(38,168,68,.15);border-color:#26a844;color:#7be08f}.msg p{margin:2px 0}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.acts .chip{font-weight:700;padding:8px 14px}
+.dtabs{display:flex;border-bottom:2px solid var(--mut);margin:10px 0}.dtabs button{font:inherit;background:none;border:0;border-bottom:3px solid transparent;color:var(--mut);padding:8px 18px;cursor:pointer;margin-bottom:-2px}.dtabs button.on{color:var(--ink);border-bottom-color:var(--ink);font-weight:700}
+.gh2{font-weight:700;margin:12px 0 6px;display:flex;justify-content:space-between;border-bottom:2px solid var(--mut)}.gh2 small{color:var(--mut)}
+.mgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(86px,1fr));gap:8px}.mt{min-width:0}.mt .cn{left:4px;bottom:4px}.mt .stp button{height:28px;font-size:1rem}
+.bar{display:flex;align-items:center;gap:8px;margin:3px 0;font-size:.88rem}.bar span{width:84px;flex:none}.bar i{display:block;height:14px;border-radius:6px;background:var(--gold);min-width:2px}.bar b{min-width:22px}
+.empty2{text-align:center;color:var(--mut);padding:30px 10px}
+#dov{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;align-items:center;justify-content:center;padding:12px;z-index:20}#dov.open{display:flex}
+.ovb{max-width:560px;width:100%;max-height:100%;overflow:auto;padding:20px;background:var(--card)}.ovb h2{margin:0 0 10px}
+.ovb textarea{width:100%;min-height:110px;font:inherit;font-size:.85rem;color:var(--ink);background:var(--bg);border:2px solid var(--ink);border-radius:10px;padding:8px}
+.sv{display:flex;gap:8px;align-items:center;border:2px solid var(--mut);border-radius:12px;padding:8px 12px;margin:8px 0}.sv div{flex:1;min-width:0}.sv small{color:var(--mut)}
+#toast{position:fixed;left:50%;bottom:70px;transform:translateX(-50%);background:#111;color:#fff;border:2px solid var(--gold);border-radius:99px;padding:8px 18px;z-index:30;display:none;max-width:90vw;text-align:center}
+#fbar{display:none}
+@media(max-width:900px){.db{grid-template-columns:1fr}.dbr{position:static;max-height:none}
+#fbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:8;padding:8px 14px calc(8px + env(safe-area-inset-bottom,0px));background:var(--card);border-top:3px solid var(--ink);align-items:center;justify-content:space-between;gap:10px}#fbar[hidden]{display:none}}
+</style></head><body>
+<main>
+<nav class="nav2"><a href="#cards" id="nC">🃏 การ์ดทั้งหมด</a><a href="#deck" id="nD">🛠 สร้างเด็ค</a></nav>
+<div id="vCards">
 <h1>การ์ดทั้งหมด</h1>
-<div class="srch"><input id="q" class="search" placeholder="ค้นหาด้วยชื่อ หรือเลขการ์ด… (เว้นวรรคเพื่อค้นหลายคำพร้อมกัน)"><button id="clr" class="chip" type="button" hidden>✕ ล้างการค้นหา</button></div>
+<div class="srch"><input id="q" class="search" placeholder="ค้นหาด้วยชื่อ เลขการ์ด หรือข้อความในเอฟเฟกต์… (เว้นวรรคเพื่อค้นหลายคำพร้อมกัน)"><button id="clr" class="chip" type="button" hidden>✕ ล้างการค้นหา</button></div>
 <div class="row"><span>เรียงตาม:</span><span id="sorts"></span></div>
 <div class="modes"><span>มุมมอง:</span><span id="modeBtns"></span><span class="sp"></span>
 <label id="szw">ขนาด <input id="sz" type="range" min="90" max="300" step="10" value="150"></label></div>
 <div class="box mfbox" id="mfBox"></div>
 <div class="cnt" id="cnt"></div>
 <div class="grid" id="grid"></div>
+</div>
+<div id="vDeck" hidden><div class="db">
+<section>
+<h1>สร้างเด็ค</h1>
+<div class="dtop"><input id="dq" class="search" placeholder="ค้นหาด้วยชื่อ เลขการ์ด หรือข้อความในเอฟเฟกต์…"><button id="favB" class="chip" type="button">☆ การ์ดที่ชอบ</button></div>
+<div class="row"><span>เรียงตาม:</span><span id="dsorts"></span></div>
+<div class="box fil" id="dfil"></div>
+<div class="zones" id="zones"></div>
+<div class="cnt" id="dcnt"></div>
+<div class="dgrid" id="dgrid"></div>
+</section>
+<aside class="box dbr" id="dside">
+<h2>เด็คของคุณ</h2>
+<input id="dname" placeholder="ชื่อเด็ค..." maxlength="40">
+<div class="sum" id="dsum"></div>
+<div id="dmsg"></div>
+<div class="acts"><button class="chip" data-a="new">＋ สร้าง</button><button class="chip" data-a="save">💾 บันทึก</button><button class="chip" data-a="load" id="loadB">📂 โหลด (0)</button><button class="chip" data-a="code">⬆ ใช้รหัสเด็ค</button></div>
+<div class="acts"><button class="chip on" data-a="copy">📋 คัดลอกรหัส</button><button class="chip" data-a="img">🖼 บันทึกเป็นภาพ</button><button class="chip" data-a="pdf">📄 บันทึกเป็น PDF</button></div>
+<div class="dtabs"><button data-t="deck" class="on">เด็ค</button><button data-t="stats">สถิติ</button></div>
+<div id="dbody"></div>
+</aside></div></div>
 </main>
+<div id="fbar" hidden><b id="fsum"></b><button class="chip on" id="fgo">ดูเด็ค ▼</button></div>
 <div id="modal"><button class="nav" id="prev" aria-label="ก่อนหน้า">‹</button><div class="dlg box" id="dlg"></div><button class="nav" id="next" aria-label="ถัดไป">›</button></div>
+<div id="dov"><div class="ovb box" id="ovb"></div></div>
+<div id="toast" role="status"></div>
 <script>
-/* ข้อมูลการ์ด — สร้างจากโฟลเดอร์ pod · เพิ่มการ์ดใหม่ = ใส่รูปใน images/thumb + images/full แล้วเพิ่มแถวที่นี่ */
-const CARDS=[{"key": "TD00-001","deck": "TD00","no": "001","name": "เดฟ","rar": "ปกติ"},{"key": "TD00-002","deck": "TD00","no": "002","name": "คาลิสต้า","rar": "ปกติ"},{"key": "TD00-003","deck": "TD00","no": "003","name": "ลีมู","rar": "ปกติ"},{"key": "TD00-004","deck": "TD00","no": "004","name": "โพรุ","rar": "ปกติ"},{"key": "TD00-005","deck": "TD00","no": "005","name": "คารุ","rar": "ปกติ"},{"key": "TD00-006","deck": "TD00","no": "006","name": "ผู้ถูกเลือก","rar": "ปกติ"},{"key": "TD00-007","deck": "TD00","no": "007","name": "ชะตาของเธอเป็นเช่นไร","rar": "ปกติ"},{"key": "TD00-008","deck": "TD00","no": "008","name": "แสงแห่งชีวิต","rar": "ปกติ"},{"key": "TD00-008-SR","deck": "TD00","no": "008","name": "แสงแห่งชีวิต","rar": "SR"},{"key": "TD00-009","deck": "TD00","no": "009","name": "พลังหญ้ายี","rar": "ปกติ"},{"key": "TD00-010","deck": "TD00","no": "010","name": "คู่ต่อสู้ที่คู่ควร","rar": "ปกติ"},{"key": "TD00-011","deck": "TD00","no": "011","name": "พระเอกมาแล้ว","rar": "ปกติ"},{"key": "TD00-012","deck": "TD00","no": "012","name": "สุริยันค้ำฟ้า","rar": "ปกติ"},{"key": "TD00-012-SR","deck": "TD00","no": "012","name": "สุริยันค้ำฟ้า","rar": "SR"},{"key": "TD00-013","deck": "TD00","no": "013","name": "การพิทักษ์ของดรีม","rar": "ปกติ"},{"key": "TD00-014","deck": "TD00","no": "014","name": "ดึ๋งดั๋ง โดปามีน","rar": "ปกติ"},{"key": "TD00-014-SR","deck": "TD00","no": "014","name": "ดึ๋งดั๋ง โดปามีน","rar": "SR"},{"key": "TD00-015","deck": "TD00","no": "015","name": "การท้าทายของขาเลาะ","rar": "ปกติ"},{"key": "TD01-001","deck": "TD01","no": "001","name": "แอสเทอรอธ ARStar","rar": "ปกติ"},{"key": "TD01-001-RR","deck": "TD01","no": "001","name": "แอสเทอรอธ ARStar","rar": "RR"},{"key": "TD01-001-SR","deck": "TD01","no": "001","name": "แอสเทอรอธ ARStar","rar": "SR"},{"key": "TD01-001-SSR","deck": "TD01","no": "001","name": "แอสเทอรอธ ARStar","rar": "SSR"},{"key": "TD01-002","deck": "TD01","no": "002","name": "ราชันย์มังกร แอสเทอรอธ","rar": "ปกติ"},{"key": "TD01-003","deck": "TD01","no": "003","name": "เฮียวกะอัลฟ่า","rar": "ปกติ"},{"key": "TD01-004","deck": "TD01","no": "004","name": "จิคนิค","rar": "ปกติ"},{"key": "TD01-004-SR","deck": "TD01","no": "004","name": "จิคนิค","rar": "SR"},{"key": "TD01-005","deck": "TD01","no": "005","name": "แฟมิเน่","rar": "ปกติ"},{"key": "TD01-006","deck": "TD01","no": "006","name": "โซลาร์","rar": "ปกติ"},{"key": "TD01-006-SR","deck": "TD01","no": "006","name": "โซลาร์","rar": "SR"},{"key": "TD01-007","deck": "TD01","no": "007","name": "เซอ","rar": "ปกติ"},{"key": "TD01-008","deck": "TD01","no": "008","name": "โชคชะตาเปลี่ยนผัน","rar": "ปกติ"},{"key": "TD01-009","deck": "TD01","no": "009","name": "เสียงคำรามราชันต์มังกร","rar": "ปกติ"},{"key": "TD01-010","deck": "TD01","no": "010","name": "วิหารเทียแมท","rar": "ปกติ"},{"key": "TD02-001","deck": "TD02","no": "001","name": "ไอวี่ ARStar","rar": "ปกติ"},{"key": "TD02-001-RR","deck": "TD02","no": "001","name": "ไอวี่ ARStar","rar": "RR"},{"key": "TD02-001-SSR","deck": "TD02","no": "001","name": "ไอวี่ ARStar","rar": "SSR"},{"key": "TD02-002","deck": "TD02","no": "002","name": "โรคระบาด ไอวี่","rar": "ปกติ"},{"key": "TD02-003","deck": "TD02","no": "003","name": "เตกีล่า","rar": "ปกติ"},{"key": "TD02-004","deck": "TD02","no": "004","name": "มอร์","rar": "ปกติ"},{"key": "TD02-004-SR","deck": "TD02","no": "004","name": "มอร์","rar": "SR"},{"key": "TD02-005","deck": "TD02","no": "005","name": "เมย์ลิน","rar": "ปกติ"},{"key": "TD02-006","deck": "TD02","no": "006","name": "เอร่า","rar": "ปกติ"},{"key": "TD02-006-SR","deck": "TD02","no": "006","name": "เอร่า","rar": "SR"},{"key": "TD02-007","deck": "TD02","no": "007","name": "อิทส์ฮาย","rar": "ปกติ"},{"key": "TD02-008","deck": "TD02","no": "008","name": "โชคชะตาเปลี่ยนผัน","rar": "ปกติ"},{"key": "TD02-009","deck": "TD02","no": "009","name": "เติมปุ๋ยหน่อยนะ","rar": "ปกติ"},{"key": "TD02-010","deck": "TD02","no": "010","name": "ดงเห็ดเผด็จศึก","rar": "ปกติ"},{"key": "TD03-001","deck": "TD03","no": "001","name": "เซนิท ARStar","rar": "ปกติ"},{"key": "TD03-001-RR","deck": "TD03","no": "001","name": "เซนิท ARStar","rar": "RR"},{"key": "TD03-002","deck": "TD03","no": "002","name": "เสียงเพรียกจากนภา เซนิท","rar": "ปกติ"},{"key": "TD03-003","deck": "TD03","no": "003","name": "บาเบล","rar": "ปกติ"},{"key": "TD03-004","deck": "TD03","no": "004","name": "แม็กนั่ม","rar": "ปกติ"},{"key": "TD03-004-SR","deck": "TD03","no": "004","name": "แม็กนั่ม","rar": "SR"},{"key": "TD03-005","deck": "TD03","no": "005","name": "มิลเลนเนีย","rar": "ปกติ"},{"key": "TD03-006","deck": "TD03","no": "006","name": "เอฟฟี่","rar": "ปกติ"},{"key": "TD03-006-SR","deck": "TD03","no": "006","name": "เอฟฟี่","rar": "SR"},{"key": "TD03-007","deck": "TD03","no": "007","name": "สยามเนโกะ","rar": "ปกติ"},{"key": "TD03-008","deck": "TD03","no": "008","name": "โชคชะตาเปลี่ยนผัน","rar": "ปกติ"},{"key": "TD03-009","deck": "TD03","no": "009","name": "ที่ซึ่งหมู่ดาวเปล่งประกาย","rar": "ปกติ"},{"key": "TD03-010","deck": "TD03","no": "010","name": "ร่องรอยแห่งดวงดาว","rar": "ปกติ"},{"key": "TD04-001","deck": "TD04","no": "001","name": "เนอร์วาน่า ARStar","rar": "ปกติ"},{"key": "TD04-002","deck": "TD04","no": "002","name": "หุ่นกระบอกมีชีวิต เนอร์วาน่า","rar": "ปกติ"},{"key": "TD04-003","deck": "TD04","no": "003","name": "ลิสเซ่น","rar": "ปกติ"},{"key": "TD04-004","deck": "TD04","no": "004","name": "อาร์ก","rar": "ปกติ"},{"key": "TD04-005","deck": "TD04","no": "005","name": "ยูนิวี่","rar": "ปกติ"},{"key": "TD04-006","deck": "TD04","no": "006","name": "เซลีน","rar": "ปกติ"},{"key": "TD04-007","deck": "TD04","no": "007","name": "บากุ","rar": "ปกติ"},{"key": "TD04-008","deck": "TD04","no": "008","name": "โชคชะตาเปลี่ยนผัน","rar": "ปกติ"},{"key": "TD04-009","deck": "TD04","no": "009","name": "ควบคุมสมบูรณ์แบบ","rar": "ปกติ"},{"key": "TD04-010","deck": "TD04","no": "010","name": "ดอกบัวแห่งนิพพาน","rar": "ปกติ"},{"key": "PZ-001","deck": "PZ","no": "001","name": "พรจากดรีม","rar": "ปกติ"},{"key": "PZ-002","deck": "PZ","no": "002","name": "พรจากเรียล","rar": "ปกติ"}];
-
+/* ข้อมูลการ์ด — kind: Unit/Normal/Battle/Field/Reward · lv/pw/cost เฉพาะ Unit */
+const CARDS=[{"key":"TD00-001","deck":"TD00","no":"001","name":"เดฟ","rar":"ปกติ","kind":"Unit","color":"แดง","text":"AUTO 1/Turn [ค่าร่าย: ◉◉] เมื่อลงบนแนวหน้าจากมือ หากคู่ต่อสู้มีการ์ดรางวัลมากกว่าคุณ สามารถจ่ายค่าร่ายเพื่อนำ (E) 1 ใบในสนาม กลับขึ้นมือเจ้าของ","lv":1,"pw":80,"cost":3},{"key":"TD00-002","deck":"TD00","no":"002","name":"คาลิสต้า","rar":"ปกติ","kind":"Unit","color":"เหลือง","text":"AUTO 1/Turn [ค่าร่าย: ◉ และทิ้งการ์ดบนมือ 1 ใบ] เมื่อลงสนามจากมือ สามารถจ่ายค่าร่ายเพื่อนำ เวทย์ Normal ไร้สี ไม่เกิน 1 ใบจากกองการ์ดคุณขึ้นมือ แล้วสับกองการ์ด","lv":0,"pw":60,"cost":2},{"key":"TD00-003","deck":"TD00","no":"003","name":"ลีมู","rar":"ปกติ","kind":"Unit","color":"ฟ้า","text":"AUTO 1/Turn [ค่าร่าย: ◉ และทิ้งการ์ดบนมือ 1 ใบ] เมื่อลงสนามจากมือ สามารถจ่ายค่าร่ายเพื่อนำ (C) ที่มี Level 1 หรือต่ำกว่าไม่เกิน 1 ใบจากกองการ์ดคุณขึ้นมือ แล้วสับกองการ์ด","lv":0,"pw":60,"cost":2},{"key":"TD00-004","deck":"TD00","no":"004","name":"โพรุ","rar":"ปกติ","kind":"Unit","color":"แดง","text":"AUTO 1/Turn [ค่าร่าย: ทิ้งการ์ดบนมือ 1 ใบ] เมื่อลงสนามจากมือ สามารถจ่ายค่าร่ายเพื่อนำ คารุ ไม่เกิน 1 ใบจากกองการ์ดคุณ วางลงบนช่องว่างในสนามคุณ แล้วสับกองการ์ด","lv":0,"pw":60,"cost":2},{"key":"TD00-005","deck":"TD00","no":"005","name":"คารุ","rar":"ปกติ","kind":"Unit","color":"ฟ้า","text":"AUTO 1/Turn [ค่าร่าย: ทิ้งการ์ดบนมือ 1 ใบ] เมื่อลงสนามจากมือ สามารถจ่ายค่าร่ายเพื่อนำ โพรุ ไม่เกิน 1 ใบจากกองการ์ดคุณ วางลงบนช่องว่างในสนามคุณ แล้วสับกองการ์ด","lv":0,"pw":60,"cost":2},{"key":"TD00-006","deck":"TD00","no":"006","name":"ผู้ถูกเลือก","rar":"ปกติ","kind":"Normal","color":"ไร้สี","text":"AUTO 1/Turn ดูการ์ดใบบนสุดไม่เกิน 5 ใบจากกองการ์ดคุณ เลือก (C) ไม่เกิน 1 ใบจากการ์ดเหล่านั้น แสดงและนำขึ้นมือ จากนั้นนำการ์ดที่เหลือกลับเข้ากองการ์ด แล้วสับกองการ์ด"},{"key":"TD00-007","deck":"TD00","no":"007","name":"ชะตาของเธอเป็นเช่นไร","rar":"ปกติ","kind":"Normal","color":"ไร้สี","text":"AUTO 1/Turn ดูการ์ดใบบนสุดไม่เกิน 5 ใบจากกองการ์ดคุณ เลือก (E) ไม่เกิน 1 ใบที่ไม่ใช่ ชะตาของเธอเป็นเช่นไร จากการ์ดเหล่านั้น แสดงและนำขึ้นมือ จากนั้นนำการ์ดที่เหลือกลับเข้ากองการ์ด แล้วสับกองการ์ด"},{"key":"TD00-008","deck":"TD00","no":"008","name":"แสงแห่งชีวิต","rar":"ปกติ","kind":"Normal","color":"เหลือง","text":"AUTO 1/Turn นำการ์ดที่หงายอยู่บนแดนจิตคุณ 1 ใบขึ้นมือ\nACT 1/Turn [ห้วงลึก][ค่าร่าย: นำการ์ดนี้ไปยังใต้กองการ์ดคุณ] หากมี (C) ที่มีชื่อ เซนิท ในสนามคุณ จั่วการ์ด 1 ใบ"},{"key":"TD00-008-SR","deck":"TD00","no":"008","name":"แสงแห่งชีวิต","rar":"SR","kind":"Normal","color":"เหลือง","text":"AUTO 1/Turn นำการ์ดที่หงายอยู่บนแดนจิตคุณ 1 ใบขึ้นมือ\nACT 1/Turn [ห้วงลึก][ค่าร่าย: นำการ์ดนี้ไปยังใต้กองการ์ดคุณ] หากมี (C) ที่มีชื่อ เซนิท ในสนามคุณ จั่วการ์ด 1 ใบ"},{"key":"TD00-009","deck":"TD00","no":"009","name":"พลังหญ้ายี","rar":"ปกติ","kind":"Normal","color":"ไร้สี","text":"AUTO 1/Turn เลือกใช้ความสามารถ 1 อย่าง\n- จั่วการ์ด 1 ใบ\n- เลือก (C) 1 ใบในสนามคุณ การ์ดใบนั้นได้รับ Power+30 จนจบเทิร์น"},{"key":"TD00-010","deck":"TD00","no":"010","name":"คู่ต่อสู้ที่คู่ควร","rar":"ปกติ","kind":"Normal","color":"ไร้สี","text":"AUTO 1/Turn [ค่าร่าย: ◉◉] เลือก (C) บนแนวหลังคู่ต่อสู้ 1 ใบ สลับตำแหน่งกับ (C) บนแนวหน้าคู่ต่อสู้ (คงสภาพแนวตั้งหรือแนวนอนของการ์ดนั้นไว้แบบเดิม)"},{"key":"TD00-011","deck":"TD00","no":"011","name":"พระเอกมาแล้ว","rar":"ปกติ","kind":"Normal","color":"ไร้สี","text":"AUTO 1/Turn เลือก (C) บนแนวหลังคุณ 1 ใบ สลับตำแหน่งกับ (C) บนแนวหน้าคุณ (คงสภาพแนวตั้งหรือแนวนอนของการ์ดนั้นไว้แบบเดิม)"},{"key":"TD00-012","deck":"TD00","no":"012","name":"สุริยันค้ำฟ้า","rar":"ปกติ","kind":"Normal","color":"แดง","text":"AUTO 1/Turn [ค่าร่าย: ทำลาย (C) บนแนวหลังคุณ 1 ใบ] เลือก (C) 1 ใบในสนามคุณ การ์ดใบนั้นได้รับ Power+40 จนจบเทิร์นคู่ต่อสู้"},{"key":"TD00-012-SR","deck":"TD00","no":"012","name":"สุริยันค้ำฟ้า","rar":"SR","kind":"Normal","color":"แดง","text":"AUTO 1/Turn [ค่าร่าย: ทำลาย (C) บนแนวหลังคุณ 1 ใบ] เลือก (C) 1 ใบในสนามคุณ การ์ดใบนั้นได้รับ Power+40 จนจบเทิร์นคู่ต่อสู้"},{"key":"TD00-013","deck":"TD00","no":"013","name":"การพิทักษ์ของดรีม","rar":"ปกติ","kind":"Battle","color":"ไร้สี","text":"AUTO [ค่าร่าย: ◉◉] เมื่อถูกโจมตี เลือก (C) คู่ต่อสู้ 1 ใบที่โจมตีอยู่ ยกเลิกการโจมตีนั้นและใน Battle Phase เทิร์นถัดไปของคู่ต่อสู้ คุณจะไม่สามารถใช้งาน การพิทักษ์ของดรีม ได้"},{"key":"TD00-014","deck":"TD00","no":"014","name":"ดึ๋งดั๋ง โดปามีน","rar":"ปกติ","kind":"Battle","color":"เขียว","text":"AUTO เมื่อโจมตี หรือถูกโจมตี เลือก (C) บนแนวหน้าคุณ 1 ใบ การ์ดใบนั้นได้รับ Power+30 จนจบเทิร์น หากมี (C) ที่มีชื่อ ไอวี่ ในสนามคุณ (C) บนแนวหน้าจะได้รับ Power+50 แทน"},{"key":"TD00-014-SR","deck":"TD00","no":"014","name":"ดึ๋งดั๋ง โดปามีน","rar":"SR","kind":"Battle","color":"เขียว","text":"AUTO เมื่อโจมตี หรือถูกโจมตี เลือก (C) บนแนวหน้าคุณ 1 ใบ การ์ดใบนั้นได้รับ Power+30 จนจบเทิร์น หากมี (C) ที่มีชื่อ ไอวี่ ในสนามคุณ (C) บนแนวหน้าจะได้รับ Power+50 แทน"},{"key":"TD00-015","deck":"TD00","no":"015","name":"การท้าทายของขาเลาะ","rar":"SR","kind":"Battle","color":"ฟ้า","text":"AUTO [ค่าร่าย: ◉ และพัก (C) บนแนวหลังคุณ 1 ใบ] เมื่อถูกโจมตี เลือก (C) บนแนวหลังคุณ 1 ใบ สลับตำแหน่งกับ (C) บนแนวหน้าคุณ ใน Battle Phase เทิร์นถัดไปของคู่ต่อสู้ คุณจะไม่สามารถใช้งาน การท้าทายของขาเลาะ ได้ (คงสภาพแนวตั้งหรือแนวนอนของการ์ดนั้นไว้แบบเดิม)"},{"key":"TD01-001","deck":"TD01","no":"001","name":"แอสเทอรอธ ARStar","rar":"ปกติ","kind":"Unit","color":"แดง","text":"Awaken เมื่อการ์ดใบนี้โจมตี ทำการเปรียบเทียบ Power พื้นฐานของการ์ดใบนี้กับ Power พื้นฐานของการ์ดที่ทำการต่อสู้ด้วยจนจบเทิร์น (ใช้งานได้หากคู่ต่อสู้มีการ์ดรางวัลหงายอยู่ 3 ใบหรือมากกว่า)\nAUTO [ค่าร่าย: ◉] เมื่อลงบนแนวหน้าจากมือ สามารถจ่ายค่าร่ายเพื่อทำลาย (E) 1 ใบในสนาม","lv":2,"pw":270,"cost":4},{"key":"TD01-001-RR","deck":"TD01","no":"001","name":"แอสเทอรอธ ARStar","rar":"RR","kind":"Unit","color":"แดง","text":"Awaken เมื่อการ์ดใบนี้โจมตี ทำการเปรียบเทียบ Power พื้นฐานของการ์ดใบนี้กับ Power พื้นฐานของการ์ดที่ทำการต่อสู้ด้วยจนจบเทิร์น\nAUTO [ค่าร่าย: ◉] เมื่อลงบนแนวหน้าจากมือ สามารถจ่ายค่าร่ายเพื่อทำลาย (E) 1 ใบในสนาม","lv":2,"pw":270,"cost":4},{"key":"TD01-001-SR","deck":"TD01","no":"001","name":"แอสเทอรอธ ARStar","rar":"SR","kind":"Unit","color":"แดง","text":"Awaken เมื่อการ์ดใบนี้โจมตี ทำการเปรียบเทียบ Power พื้นฐานของการ์ดใบนี้กับ Power พื้นฐานของการ์ดที่ทำการต่อสู้ด้วยจนจบเทิร์น\nAUTO [ค่าร่าย: ◉] เมื่อลงบนแนวหน้าจากมือ สามารถจ่ายค่าร่ายเพื่อทำลาย (E) 1 ใบในสนาม","lv":2,"pw":270,"cost":4},{"key":"TD01-001-SSR","deck":"TD01","no":"001","name":"แอสเทอรอธ ARStar","rar":"SSR","kind":"Unit","color":"แดง","text":"Awaken เมื่อการ์ดใบนี้โจมตี ทำการเปรียบเทียบ Power พื้นฐานของการ์ดใบนี้กับ Power พื้นฐานของการ์ดที่ทำการต่อสู้ด้วยจนจบเทิร์น\nAUTO [ค่าร่าย: ◉] เมื่อลงบนแนวหน้าจากมือ สามารถจ่ายค่าร่ายเพื่อทำลาย (E) 1 ใบในสนาม","lv":2,"pw":270,"cost":4},{"key":"TD01-002","deck":"TD01","no":"002","name":"ราชันย์มังกร แอสเทอรอธ","rar":"ปกติ","kind":"Unit","color":"แดง","text":"AUTO เมื่อการ์ดใบนี้โจมตี การ์ดใบนี้ได้รับ Power+30 จนจบเทิร์น\nAUTO เมื่อการ์ดใบนี้โจมตีสำเร็จ สามารถนำ (C) สีแดง Level 1 หรือ แอสเทอรอธ ไม่เกิน 1 ใบจากกองการ์ดคุณขึ้นมือ แล้วสับกองการ์ด","lv":1,"pw":140,"cost":3},{"key":"TD01-003","deck":"TD01","no":"003","name":"เฮียวกะอัลฟ่า","rar":"ปกติ","kind":"Unit","color":"แดง","text":"","lv":1,"pw":150,"cost":3},{"key":"TD01-004","deck":"TD01","no":"004","name":"จิคนิค","rar":"ปกติ","kind":"Unit","color":"แดง","text":"AUTO 1/Turn เมื่อลงสนามจากมือ สามารถนำการ์ดที่หงายอยู่บนแดนจิตคุณ 1 ใบไปยังห้วงลึกคุณ และนำการ์ด (C) สีแดงหรือสีเหลือง 1 ใบในห้วงลึกไปวางบนแดนจิตในสภาพหงาย จากนั้นจั่วการ์ด 1 ใบ","lv":1,"pw":100,"cost":3},{"key":"TD01-004-SR","deck":"TD01","no":"004","name":"จิคนิค","rar":"SR","kind":"Unit","color":"แดง","text":"AUTO 1/Turn เมื่อลงสนามจากมือ สามารถนำการ์ดที่หงายอยู่บนแดนจิตคุณ 1 ใบไปยังห้วงลึกคุณ และนำการ์ด (C) สีแดงหรือสีเหลือง 1 ใบในห้วงลึกไปวางบนแดนจิตในสภาพหงาย จากนั้นจั่วการ์ด 1 ใบ","lv":1,"pw":100,"cost":3},{"key":"TD01-005","deck":"TD01","no":"005","name":"แฟมิเน่","rar":"ปกติ","kind":"Unit","color":"แดง","text":"","lv":0,"pw":80,"cost":2},{"key":"TD01-006","deck":"TD01","no":"006","name":"โซลาร์","rar":"ปกติ","kind":"Unit","color":"แดง","text":"AUTO 1/Turn เมื่อลงสนามจากมือ หากมี (C) สีแดงบนแนวหน้าคุณ สามารถนำการ์ดสีแดงบนมือ 1 ใบไปวางบนแดนจิตคุณในสภาพคว่ำ\nCONT หากมี (C) ที่มีชื่อ เซลีน ในสนามคุณ ทำลายการ์ดใบนี้","lv":0,"pw":50,"cost":2},{"key":"TD01-006-SR","deck":"TD01","no":"006","name":"โซลาร์","rar":"SR","kind":"Unit","color":"แดง","text":"AUTO 1/Turn เมื่อลงสนามจากมือ หากมี (C) สีแดงบนแนวหน้าคุณ สามารถนำการ์ดสีแดงบนมือ 1 ใบไปวางบนแดนจิตคุณในสภาพคว่ำ\nCONT หากมี (C) ที่มีชื่อ เซลีน ในสนามคุณ ทำลายการ์ดใบนี้","lv":0,"pw":50,"cost":2},{"key":"TD01-007","deck":"TD01","no":"007","name":"เซอ","rar":"ปกติ","kind":"Unit","color":"แดง","text":"CONT ในเทิร์นคุณ (C) สีแดงบนแนวหน้าคุณได้รับ Power+10","lv":0,"pw":70,"cost":2},{"key":"TD01-008","deck":"TD01","no":"008","name":"โชคชะตาเปลี่ยนผัน","rar":"ปกติ","kind":"Normal","color":"แดง","text":"AUTO 1/Turn หาก (C) คุณถูกทำลายใน Battle Phase คู่ต่อสู้ที่ผ่านมา นำ (C) สีแดง 1 ใบในห้วงลึกคุณขึ้นมือ การ์ดใบนั้นบนมือ Level ลดลง 1 และการ์ดที่ชื่อเดียวกันกับการ์ดใบนั้นจะไม่สามารถใช้ความสามารถได้จนจบเทิร์น (ไม่นับความสามารถ Awaken)"},{"key":"TD01-009","deck":"TD01","no":"009","name":"เสียงคำรามราชันต์มังกร","rar":"ปกติ","kind":"Battle","color":"แดง","text":"AUTO เมื่อโจมตี หรือถูกโจมตี เลือก (C) สีแดง 1 ใบในสนามคุณ การ์ดใบนั้นได้รับ Power+10 ต่อจำนวน (C) สีแดงในสนามคุณจนจบเทิร์น หากคุณมี แอสเทอรอธ บนแนวหน้าคุณ สามารถจ่ายค่าร่าย [ค่าร่าย: ◉◉] จากนั้น แอสเทอรอธ จะไม่รับผลจากความสามารถ Battle ของคู่ต่อสู้ จนจบเทิร์น"},{"key":"TD01-010","deck":"TD01","no":"010","name":"วิหารเทียแมท","rar":"ปกติ","kind":"Field","color":"แดง","text":"[ค่าร่าย: ◉] ติดตั้งการ์ดใบนี้ลงบนช่องสนามเวทย์\nAUTO 1/Turn เมื่อ (C) สีแดงโจมตี การ์ดใบนั้นได้รับ Power+20 จนจบเทิร์น\nCONT แอสเทอรอธ บนแนวหน้าคุณได้รับ Power พื้นฐาน +30"},{"key":"TD02-001","deck":"TD02","no":"001","name":"ไอวี่ ARStar","rar":"ปกติ","kind":"Unit","color":"เขียว","text":"Awaken เมื่อเริ่ม End Phase คุณเลือก (C) บนแนวหลังคุณ 1 ใบ สลับตำแหน่งการ์ดใบนั้นกับ (C) บนแนวหน้าคุณ จากนั้นการ์ดใบนั้นได้รับ Power+40 จนจบเทิร์นคู่ต่อสู้ (ใช้งานได้หากคู่ต่อสู้มีการ์ดรางวัลหงายอยู่ 3 ใบหรือมากกว่า)\nAUTO เมื่อการ์ดนี้โจมตี การ์ดนี้ได้รับ Power+40 ตามจำนวน (C) Level 0 บนแนวหลังคุณ จนจบเทิร์น","lv":1,"pw":130,"cost":3},{"key":"TD02-001-RR","deck":"TD02","no":"001","name":"ไอวี่ ARStar","rar":"RR","kind":"Unit","color":"เขียว","text":"Awaken เมื่อเริ่ม End Phase คุณเลือก (C) บนแนวหลังคุณ 1 ใบ สลับตำแหน่งการ์ดใบนั้นกับ (C) บนแนวหน้าคุณ จากนั้นการ์ดใบนั้นได้รับ Power+40 จนจบเทิร์นคู่ต่อสู้\nAUTO เมื่อการ์ดนี้โจมตี การ์ดนี้ได้รับ Power+40 ตามจำนวน (C) Level 0 บนแนวหลังคุณ จนจบเทิร์น","lv":1,"pw":130,"cost":3},{"key":"TD02-001-SSR","deck":"TD02","no":"001","name":"ไอวี่ ARStar","rar":"SSR","kind":"Unit","color":"เขียว","text":"Awaken เมื่อเริ่ม End Phase คุณเลือก (C) บนแนวหลังคุณ 1 ใบ สลับตำแหน่งการ์ดใบนั้นกับ (C) บนแนวหน้าคุณ จากนั้นการ์ดใบนั้นได้รับ Power+40 จนจบเทิร์นคู่ต่อสู้\nAUTO เมื่อการ์ดนี้โจมตี การ์ดนี้ได้รับ Power+40 ตามจำนวน (C) Level 0 บนแนวหลังคุณ จนจบเทิร์น","lv":1,"pw":130,"cost":3},{"key":"TD02-002","deck":"TD02","no":"002","name":"โรคระบาด ไอวี่","rar":"ปกติ","kind":"Unit","color":"เขียว","text":"AUTO 1/Turn เมื่อลงสนามจากมือ สามารถนำ (C) สีเขียว Level 0 ที่ไม่มีชื่อ ไอวี่ 1 ใบในห้วงลึกคุณ วางลงบนช่องว่างในสนามคุณ\nACT 1/Turn [ค่าร่าย: ทำลายการ์ดใบนี้ และ (C) ใบอื่นบนแนวหลังคุณ 1 ใบ] นำ ไอวี่ ไม่เกิน 1 ใบจากกองการ์ดคุณขึ้นมือ แล้วสับกองการ์ด","lv":0,"pw":60,"cost":2},{"key":"TD02-003","deck":"TD02","no":"003","name":"เตกีล่า","rar":"ปกติ","kind":"Unit","color":"เขียว","text":"","lv":1,"pw":150,"cost":3},{"key":"TD02-004","deck":"TD02","no":"004","name":"มอร์","rar":"ปกติ","kind":"Unit","color":"เขียว","text":"AUTO 1/Turn เมื่อลงสนามจากมือ หากมี (C) สีเขียว Level 0 ในสนามคุณ จั่วการ์ด 1 ใบ","lv":1,"pw":100,"cost":3},{"key":"TD02-004-SR","deck":"TD02","no":"004","name":"มอร์","rar":"SR","kind":"Unit","color":"เขียว","text":"AUTO 1/Turn เมื่อลงสนามจากมือ หากมี (C) สีเขียว Level 0 ในสนามคุณ จั่วการ์ด 1 ใบ","lv":1,"pw":100,"cost":3},{"key":"TD02-005","deck":"TD02","no":"005","name":"เมย์ลิน","rar":"ปกติ","kind":"Unit","color":"เขียว","text":"","lv":0,"pw":80,"cost":2},{"key":"TD02-006","deck":"TD02","no":"006","name":"เอร่า","rar":"ปกติ","kind":"Unit","color":"เขียว","text":"AUTO 1/Turn เมื่อลงสนาม หากมี (C) สีเขียวบนแนวหน้าคุณ สามารถแสดงการ์ดใบบนสุด 1 ใบจากกองการ์ดคุณ หากการ์ดใบนั้นเป็นสีเขียวนำขึ้นมือ หากไม่ใช่ทิ้งการ์ดใบนั้น จั่วการ์ด 1 ใบ","lv":0,"pw":50,"cost":2},{"key":"TD02-006-SR","deck":"TD02","no":"006","name":"เอร่า","rar":"SR","kind":"Unit","color":"เขียว","text":"AUTO 1/Turn เมื่อลงสนาม หากมี (C) สีเขียวบนแนวหน้าคุณ สามารถแสดงการ์ดใบบนสุด 1 ใบจากกองการ์ดคุณ หากการ์ดใบนั้นเป็นสีเขียวนำขึ้นมือ หากไม่ใช่ทิ้งการ์ดใบนั้น จั่วการ์ด 1 ใบ","lv":0,"pw":50,"cost":2},{"key":"TD02-007","deck":"TD02","no":"007","name":"อิทส์ฮาย","rar":"ปกติ","kind":"Unit","color":"เขียว","text":"AUTO เมื่อลงสนามจากมือ นำการ์ดใบบนสุด 1 ใบจากกองการ์ดคุณไปยังห้วงลึกคุณ หากการ์ดใบนั้นไม่ใช่ (C) Level 0 พักการ์ดใบนี้","lv":0,"pw":100,"cost":2},{"key":"TD02-008","deck":"TD02","no":"008","name":"โชคชะตาเปลี่ยนผัน","rar":"ปกติ","kind":"Normal","color":"เขียว","text":"AUTO 1/Turn หาก (C) คุณถูกทำลายใน Battle Phase คู่ต่อสู้ที่ผ่านมา นำ (C) สีเขียว 1 ใบในห้วงลึกคุณขึ้นมือ หากการ์ดนั้นเป็น Level 0 สามารถนำ (E) สีเขียว 1 ใบที่ไม่ใช่ โชคชะตาเปลี่ยนผัน ในห้วงลึกคุณขึ้นมือ"},{"key":"TD02-009","deck":"TD02","no":"009","name":"เติมปุ๋ยหน่อยนะ","rar":"ปกติ","kind":"Normal","color":"เขียว","text":"AUTO 1/Turn เลือก (C) สีเขียวที่อยู่บนแนวหน้าคุณ ค่าโจมตีลดลง 1 จนจบเทิร์น จากนั้นหากการ์ดใบนั้นคือ ไอวี่ ค่าโจมตี ไอวี่ ลดลงอีก 1 จนจบเทิร์น"},{"key":"TD02-010","deck":"TD02","no":"010","name":"ดงเห็ดเผด็จศึก","rar":"ปกติ","kind":"Field","color":"เขียว","text":"[ค่าร่าย: ◉] ติดตั้งการ์ดใบนี้ลงบนช่องสนามเวทย์\nCONT (C) สีเขียวบนแนวหน้าคุณได้รับ Power+20\nAUTO 1/Turn เมื่อ (C) สีเขียวโจมตีสำเร็จ และมี ไอวี่ ในสนามคุณ สามารถนำ เติมปุ๋ยหน่อยนะ หรือ ดึ๋งดั๋งโดปามีน ไม่เกิน 1 ใบจากกองการ์ดคุณขึ้นมือ แล้วสับกองการ์ด"},{"key":"TD03-001","deck":"TD03","no":"001","name":"เซนิท ARStar","rar":"ปกติ","kind":"Unit","color":"เหลือง","text":"Awaken [ค่าร่าย: นำการ์ดสีเหลืองกี่ใบก็ได้ในห้วงลึกคุณไปยังสุญญะคุณ] เมื่อการ์ดใบนี้โจมตี การ์ดใบนี้ได้รับ Power+10 ต่อการ์ดที่ถูกส่งไปยังสุญญะด้วยความสามารถนี้ และการโจมตีในครั้งนี้จะไม่สามารถถูกยกเลิกได้ จนจบเทิร์น (ใช้งานได้หากคู่ต่อสู้มีการ์ดรางวัลหงายอยู่ 3 ใบหรือมากกว่า)\nAUTO เมื่อการ์ดใบนี้โจมตี สามารถนำการ์ดบนมือคุณ 1 ใบไปวางบนแดนจิตคุณในสภาพหงาย จากนั้นนำการ์ดใบอื่นบนแดนจิตคุณ 1 ใบขึ้นมือ","lv":2,"pw":240,"cost":3},{"key":"TD03-001-RR","deck":"TD03","no":"001","name":"เซนิท ARStar","rar":"RR","kind":"Unit","color":"เหลือง","text":"Awaken [ค่าร่าย: นำการ์ดสีเหลืองกี่ใบก็ได้ในห้วงลึกคุณไปยังสุญญะคุณ] เมื่อการ์ดใบนี้โจมตี การ์ดใบนี้ได้รับ Power+10 ต่อการ์ดที่ถูกส่งไปยังสุญญะด้วยความสามารถนี้ และการโจมตีในครั้งนี้จะไม่สามารถถูกยกเลิกได้ จนจบเทิร์น\nAUTO เมื่อการ์ดใบนี้โจมตี สามารถนำการ์ดบนมือคุณ 1 ใบไปวางบนแดนจิตคุณในสภาพหงาย จากนั้นนำการ์ดใบอื่นบนแดนจิตคุณ 1 ใบขึ้นมือ","lv":2,"pw":240,"cost":3},{"key":"TD03-002","deck":"TD03","no":"002","name":"เสียงเพรียกจากนภา เซนิท","rar":"ปกติ","kind":"Unit","color":"เหลือง","text":"ACT 1/Turn [ค่าร่าย: ทิ้งการ์ดบนมือ 1 ใบ] การ์ดใบนี้ได้รับ Power+20 และได้รับความสามารถต่อไปนี้ จนจบเทิร์นคู่ต่อสู้ 【AUTO เมื่อการ์ดใบนี้โจมตีสำเร็จ จั่วการ์ด 1 ใบ】\nACT 1/Turn [ห้วงลึก][ค่าร่าย: นำการ์ดใบนี้ไปยังสุญญะคุณ] นำ เซนิท 1 ใบในห้วงลึกคุณขึ้นมือ","lv":1,"pw":140,"cost":3},{"key":"TD03-003","deck":"TD03","no":"003","name":"บาเบล","rar":"ปกติ","kind":"Unit","color":"เหลือง","text":"","lv":1,"pw":150,"cost":3},{"key":"TD03-004","deck":"TD03","no":"004","name":"แม็กนั่ม","rar":"ปกติ","kind":"Unit","color":"เหลือง","text":"AUTO 1/Turn [ค่าร่าย: ทิ้งการ์ดบนมือ 1 ใบ] เมื่อลงสนาม สามารถจ่ายค่าร่ายเพื่อหงาย (C) สีเหลือง 1 ใบบนแดนจิตคุณ","lv":1,"pw":100,"cost":3},{"key":"TD03-004-SR","deck":"TD03","no":"004","name":"แม็กนั่ม","rar":"SR","kind":"Unit","color":"เหลือง","text":"AUTO 1/Turn [ค่าร่าย: ทิ้งการ์ดบนมือ 1 ใบ] เมื่อลงสนาม สามารถจ่ายค่าร่ายเพื่อหงาย (C) สีเหลือง 1 ใบบนแดนจิตคุณ","lv":1,"pw":100,"cost":3},{"key":"TD03-005","deck":"TD03","no":"005","name":"มิลเลนเนีย","rar":"ปกติ","kind":"Unit","color":"เหลือง","text":"","lv":0,"pw":80,"cost":2},{"key":"TD03-006","deck":"TD03","no":"006","name":"เอฟฟี่","rar":"ปกติ","kind":"Unit","color":"เหลือง","text":"ACT 1/Turn [ค่าร่าย: ◉ และพักการ์ดใบนี้] หากมี (C) สีเหลืองบนแนวหน้าคุณ ดูการ์ดใบบนสุด 1 ใบจากกองการ์ดคุณ แล้วนำไปวางใต้การ์ดนี้ในสภาพคว่ำ จากนั้นใน Draw Phase ถัดไปของคุณ นำการ์ดใบนั้นขึ้นมือ หรือนำไปวางบนแดนจิตคุณในสภาพคว่ำ","lv":0,"pw":50,"cost":2},{"key":"TD03-006-SR","deck":"TD03","no":"006","name":"เอฟฟี่","rar":"SR","kind":"Unit","color":"เหลือง","text":"ACT 1/Turn [ค่าร่าย: ◉ และพักการ์ดใบนี้] หากมี (C) สีเหลืองบนแนวหน้าคุณ ดูการ์ดใบบนสุด 1 ใบจากกองการ์ดคุณ แล้วนำไปวางใต้การ์ดนี้ในสภาพคว่ำ จากนั้นใน Draw Phase ถัดไปของคุณ นำการ์ดใบนั้นขึ้นมือ หรือนำไปวางบนแดนจิตคุณในสภาพคว่ำ","lv":0,"pw":50,"cost":2},{"key":"TD03-007","deck":"TD03","no":"007","name":"สยามเนโกะ","rar":"ปกติ","kind":"Unit","color":"เหลือง","text":"ACT 1/Turn [ห้วงลึก][ค่าร่าย: ◉ และทิ้งการ์ดบนมือ 1 ใบ จากนั้นนำการ์ดใบนี้ไปยังใต้กองการ์ด] นำ (C) สีเหลือง Level 1 หรือมากกว่า 1 ใบในห้วงลึกคุณขึ้นมือ","lv":0,"pw":50,"cost":2},{"key":"TD03-008","deck":"TD03","no":"008","name":"โชคชะตาเปลี่ยนผัน","rar":"ปกติ","kind":"Normal","color":"เหลือง","text":"AUTO 1/Turn หาก (C) คุณถูกทำลายใน Battle Phase คู่ต่อสู้ที่ผ่านมา นำการ์ดสีเหลือง 1 ใบที่ไม่ใช่ โชคชะตาเปลี่ยนผัน ในห้วงลึกคุณไปวางบนแดนจิตคุณในสภาพหงาย จากนั้นนำการ์ดใบอื่น 1 ใบบนแดนจิตคุณขึ้นมือ"},{"key":"TD03-009","deck":"TD03","no":"009","name":"ที่ซึ่งหมู่ดาวเปล่งประกาย","rar":"ปกติ","kind":"Normal","color":"เหลือง","text":"AUTO 1/Turn [ค่าร่าย: ทิ้งการ์ดบนมือ 1 ใบ] นำเวทย์ Normal สีเหลืองหรือไร้สี 1 ใบที่ไม่ใช่ ที่ซึ่งหมู่ดาวเปล่งประกาย ในห้วงลึกคุณขึ้นมือ จากนั้นหากคุณมี เซนิท บนแนวหน้าคุณ สามารถจ่ายค่าร่าย [ค่าร่าย: ◉] เซนิท ได้รับ Power+40 จนจบเทิร์นคู่ต่อสู้"},{"key":"TD03-010","deck":"TD03","no":"010","name":"ร่องรอยแห่งดวงดาว","rar":"ปกติ","kind":"Field","color":"เหลือง","text":"[ค่าร่าย: ◉] ติดตั้งการ์ดใบนี้ลงบนช่องสนามเวทย์\nACT 1/Turn [ค่าร่าย: ทิ้งการ์ดบนมือ 1 ใบ] เลือก (C) สีเหลือง 1 ใบในสนามคุณ ค่าโจมตีการ์ดใบนั้นลดลง 1 จนจบเทิร์น\nAUTO ในเทิร์นนี้ เซนิท บนแนวหน้าคุณ จะได้รับความสามารถต่อไปนี้ จนจบเทิร์น 【AUTO เมื่อการ์ดใบนี้โจมตี จั่วการ์ด 1 ใบ】"},{"key":"TD04-001-RR","deck":"TD04","no":"001","name":"เนอร์วาน่า ARStar","rar":"RR","kind":"Unit","color":"ฟ้า","text":"Awaken [ค่าร่าย: พักการ์ดใบนี้ และ ◉◉◉] เมื่อการ์ดใบนี้อยู่บนแนวหน้า เมื่อเริ่ม Battle Phase คุณ การ์ดใบนี้ได้รับ Power+140 จนจบเทิร์นคู่ต่อสู้ จากนั้นเลือก (C) บนแนวหน้าคู่ต่อสู้ พักการ์ดนั้น และโจมตี (C) บนแนวหลังคู่ต่อสู้โดยไม่ต้องจ่ายค่าโจมตี และความสามารถ AUTO ของการ์ดใบนั้นไม่ทำงาน จากนั้นเมื่อการ์ดใบนั้นโจมตีสำเร็จ ได้รับการ์ดรางวัลตาม (C) ที่ถูกทำลาย\nACT 1/Turn [ค่าร่าย: ทิ้งการ์ดบนมือ 1 ใบ] คู่ต่อสู้เลือก (C) บนแนวหลังคู่ต่อสู้ 1 ใบ สลับตำแหน่งกับ (C) บนแนวหน้าคู่ต่อสู้ และหากค่าร่ายที่ใช้เป็นการ์ดสีฟ้า เลือก (C) สีฟ้า 1 ใบในสนามคุณ การ์ดใบนั้นได้รับ Power+20 จนจบเทิร์นคู่ต่อสู้","lv":1,"pw":140,"cost":3},{"key":"TD04-002","deck":"TD04","no":"002","name":"หุ่นกระบอกมีชีวิต เนอร์วาน่า","rar":"ปกติ","kind":"Unit","color":"ฟ้า","text":"AUTO 1/Turn เมื่อลงสนาม สามารถดูการ์ดใบบนสุดไม่เกิน 3 ใบจากกองการ์ดคุณ เลือกการ์ดสีฟ้าไม่เกิน 1 ใบจากการ์ดเหล่านั้น แสดงและนำขึ้นมือ จากนั้นนำการ์ดที่เหลือกลับเข้ากองการ์ด แล้วสับกองการ์ด\nACT 1/Turn [ค่าร่าย: ◉◉ และทำลายการ์ดใบนี้] นำ เนอร์วาน่า ไม่เกิน 1 ใบในห้วงลึกคุณวางลงบนช่องว่างในสนามคุณ","lv":0,"pw":50,"cost":2},{"key":"TD04-003","deck":"TD04","no":"003","name":"ลิสเซ่น","rar":"ปกติ","kind":"Unit","color":"ฟ้า","text":"","lv":1,"pw":150,"cost":3},{"key":"TD04-004","deck":"TD04","no":"004","name":"อาร์ก","rar":"ปกติ","kind":"Unit","color":"ฟ้า","text":"AUTO 1/Turn เมื่อลงสนาม สามารถนำการ์ด 1 ใบบนแดนจิตไปยังห้วงลึกคุณ จากนั้นนำการ์ด (C) สีฟ้า หรือสีเขียว 1 ใบในห้วงลึกคุณไปวางบนแดนจิตคุณในสภาพหงาย","lv":1,"pw":100,"cost":3},{"key":"TD04-005","deck":"TD04","no":"005","name":"ยูนิวี่","rar":"ปกติ","kind":"Unit","color":"ฟ้า","text":"","lv":0,"pw":80,"cost":2},{"key":"TD04-006","deck":"TD04","no":"006","name":"เซลีน","rar":"ปกติ","kind":"Unit","color":"ฟ้า","text":"ACT 1/Turn [ค่าร่าย: ◉ และทิ้งการ์ดบนมือ 1 ใบ จากนั้นพักการ์ดใบนี้] หากมี (C) สีฟ้าบนแนวหน้าคุณ นำการ์ดใบบนสุด 1 ใบจากกองการ์ดคุณ ไปวางบนแดนจิตคุณในสภาพหงาย\nCONT หากมี (C) ที่มีชื่อ โซลาร์ ในสนามคุณ ทำลายการ์ดใบนี้","lv":0,"pw":50,"cost":2},{"key":"TD04-007","deck":"TD04","no":"007","name":"บากุ","rar":"ปกติ","kind":"Unit","color":"ฟ้า","text":"AUTO 1/Turn เมื่อถูกทิ้งเป็นค่าร่ายจาก (C) สีฟ้า เลือก (C) สีฟ้าบนแนวหน้าคุณ 1 ใบ การ์ดใบนั้นได้รับ Power+20 จนจบเทิร์นคู่ต่อสู้","lv":0,"pw":70,"cost":2},{"key":"TD04-008","deck":"TD04","no":"008","name":"โชคชะตาเปลี่ยนผัน","rar":"ปกติ","kind":"Normal","color":"ฟ้า","text":"AUTO 1/Turn หาก (C) คุณถูกทำลายใน Battle Phase คู่ต่อสู้ที่ผ่านมา เลือก (C) สีฟ้า Level 1 หรือต่ำกว่า 1 ใบในห้วงลึกคุณ วางลงในสนามคุณ หากการ์ดใบนั้นเป็น Level 1 จั่วการ์ด 1 ใบ"},{"key":"TD04-009","deck":"TD04","no":"009","name":"ควบคุมสมบูรณ์แบบ","rar":"ปกติ","kind":"Normal","color":"ฟ้า","text":"AUTO 1/Turn [ค่าร่าย: ◉ และพัก (C) สีฟ้าบนแนวหลังคุณ 2 ใบ] จั่วการ์ดจนการ์ดบนมือมีครบตามจำนวน (C) สีฟ้าในสนามคุณ หากมี เนอร์วาน่า บนแนวหน้าคุณ สามารถจ่ายค่าร่าย [ค่าร่าย: ◉] เลือก (C) บนแนวหน้าคู่ต่อสู้ 1 ใบ การ์ดใบนั้น Power จะกลายเป็น 0 จนจบเทิร์น"},{"key":"TD04-010","deck":"TD04","no":"010","name":"ดอกบัวแห่งนิพพาน","rar":"ปกติ","kind":"Field","color":"ฟ้า","text":"[ค่าร่าย: ◉] ติดตั้งการ์ดใบนี้ลงบนช่องสนามเวทย์\nAUTO 1/Turn เมื่อมี (C) ที่ไม่ใช่สีฟ้าลงมาในสนาม เจ้าของทิ้งการ์ดบนมือ 1 ใบ\nCONT เมื่อมี เนอร์วาน่า อยู่บนแนวหน้าคุณ (C) บนแนวหน้าคู่ต่อสู้ ค่าโจมตีสีรุ้งเพิ่มขึ้น 1"},{"key":"PZ-001","deck":"PZ","no":"001","name":"พรจากดรีม","rar":"ปกติ","kind":"Reward","color":"ทอง","text":"AUTO จั่วการ์ด 1 ใบ"},{"key":"PZ-002","deck":"PZ","no":"002","name":"พรจากเรียล","rar":"ปกติ","kind":"Reward","color":"ทอง","text":"CONT (C) บนแนวหน้าคุณได้รับ Power+20 จนจบเทิร์นคู่ต่อสู้"}];
 </script>
 <script>
+
 /* ตัวกรองแบบเลือกได้หลายตัว (multi-select) ใช้ร่วมกันระหว่าง Card List และ Deckbuilder
    state = { k: [ค่าที่เลือก], __m: { k: 'any'|'all' }, __r: { k: [min|null, max|null] } }
    spec  = [{ t:'chips', k, label, items:[{v,l,i}], mode:true, adv:true, limit }, { t:'range', k, label, min, max, adv:true }]
@@ -218,70 +298,258 @@ const CARDS=[{"key": "TD00-001","deck": "TD00","no": "001","name": "เดฟ","
   window.MF = { prune, items, render, bind, count, has, inRange: (st, k, v) => { const r = rangeOf(st, k); if (r[0] != null && r[1] != null && r[0] > r[1]) { return _in({ __r: { [k]: [r[1], r[0]] } }, k, v); } return _in(st, k, v); }, reset, active };
 })();
 
+
 </script>
 <script>
 const $=id=>document.getElementById(id);
-const MFS={};let SPEC=[];
-const SORTS={no:"ซีรีส์",name:"ชื่อ",rar:"ความหายาก"};
-const MODES={gallery:"🖼 แกลเลอรี",list:"📃 รายการ",table:"📊 ตาราง",series:"📚 แยกตามซีรีส์"};
+const esc=s=>String(s==null?"":s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+/* ===== กติกาเด็ค — แก้ตัวเลขตรงนี้ได้ ===== */
+const CFG={MAIN:50,COPIES:4,REWARD_MAX:5};
+const KT={Unit:"Unit",Normal:"เวทย์ Normal",Battle:"เวทย์ Battle",Field:"เวทย์ Field",Reward:"การ์ดรางวัล"};
+const KORD={Unit:0,Normal:1,Battle:2,Field:3,Reward:4};
+const CC={แดง:"#d8332c",ฟ้า:"#2a74d8",เขียว:"#2e9e4a",เหลือง:"#d99a00",ไร้สี:"#6f7a86",ทอง:"#b8860b"};
+const CORD=["แดง","ฟ้า","เขียว","เหลือง","ไร้สี","ทอง"];
 const RORD={"ปกติ":0,RR:1,SR:2,SSR:3};
-let ALL=[],list=[],cur=0,sort="no",mode="gallery",gw=150;
+const LS={get(k,d){try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const toast=(m)=>{const t=$("toast");t.textContent=m;t.style.display="block";clearTimeout(toast.t);toast.t=setTimeout(()=>t.style.display="none",2200)};
+const ALL=CARDS.map((c,i)=>{c.i=i;c.code=c.deck+"-"+c.no;c.base=c.code;c.kt=KT[c.kind];c.isU=c.kind==="Unit";c.rew=c.kind==="Reward";
+ c.kws=[...new Set((c.text.match(/\b(AUTO|ACT|CONT|Awaken)\b/g)||[]).concat(/ห้วงลึก/.test(c.text)?["ห้วงลึก"]:[],/1\/Turn/.test(c.text)?["1/Turn"]:[]))];return c});
+const BY=Object.fromEntries(ALL.map(c=>[c.key,c]));
+const TOT={};ALL.forEach(c=>{(TOT[c.deck]=TOT[c.deck]||new Set()).add(c.no)});ALL.forEach(c=>c.total=TOT[c.deck].size);
+const thumb=c=>`images/thumb/${c.key}.webp`,full=c=>`images/full/${c.key}.webp`;
+const rb=c=>c.rar!=="ปกติ"?c.rar:"";
+const pic=(c,big)=>`<img ${big?"":'loading="lazy" '}src="${big?full(c):thumb(c)}" alt="${esc(c.name)}">`;
+function fmt(t){if(!t)return'<div class="fx none">ไม่มีความสามารถ</div>';
+ return'<div class="fx">'+esc(t).split("\n").map(l=>"<p>"+l.replace(/^(AUTO|ACT|CONT|Awaken)\s/,'<span class="kw $1">$1</span>').replace(/1\/Turn/g,'<span class="kw tn">1/Turn</span>').replace(/\[[^\]]*\]/g,m=>"<b>"+m+"</b>").replace(/◉/g,'<i class="orb"></i>').replace(/\((C|E)\)/g,'<span class="ce">$1</span>')+"</p>").join("")+"</div>"}
+const statsHtml=c=>c.isU?`<div class="sts"><div><b>LEVEL</b><span>${c.lv}</span></div><div><b>POWER</b><span>${c.pw}</span></div><div><b>COST</b><span>${c.cost}</span></div></div>`:"";
+
+/* ===== รายการเด็ค (state) ===== */
+let D=LS.get("pod-cur",{name:"",cards:{}});if(!D||typeof D!=="object"||!D.cards)D={name:"",cards:{}};
+for(const k of Object.keys(D.cards))if(!BY[k])delete D.cards[k];
+const FAV=new Set(LS.get("pod-fav",[]));
+const persist=()=>LS.set("pod-cur",D);
+function counts(){let m=0,r=0;const b={};for(const[k,n]of Object.entries(D.cards)){const c=BY[k];c.rew?r+=n:m+=n;b[c.base]=(b[c.base]||0)+n}return{m,r,b}}
+function addCard(k,d){const c=BY[k];if(!c)return;const{m,r,b}=counts(),n=D.cards[k]||0;
+ if(d>0){if((b[c.base]||0)>=CFG.COPIES)return toast(`ใส่การ์ดรหัสเดียวกันได้ไม่เกิน ${CFG.COPIES} ใบ`);
+  if(c.rew?r>=CFG.REWARD_MAX:m>=CFG.MAIN)return toast(c.rew?`การ์ดรางวัลครบ ${CFG.REWARD_MAX} ใบแล้ว`:`Main Deck ครบ ${CFG.MAIN} ใบแล้ว`)}
+ const v=Math.max(0,n+d);if(v)D.cards[k]=v;else delete D.cards[k];persist();renderDeck();syncPool()}
+
+/* ===== โมดัลรายละเอียดการ์ด ===== */
+let MA=[],cur=0;
+function openM(arr,n){MA=arr;showM(n)}
+function showM(n){cur=(n+MA.length)%MA.length;const c=MA[cur];
+ $("dlg").innerHTML=`<button class="x" onclick="closeM()" aria-label="ปิด">✕</button><div class="big">${pic(c,true)}</div><div><h2>${esc(c.name)}</h2><div class="code">${c.code}/${c.total}</div>
+ <div class="tags"><span class="tag gold">${c.deck}</span><span class="tag">${c.kt}</span><span class="tag c" style="background:${CC[c.color]}">${c.color}</span>${rb(c)?`<span class="tag r-${c.rar}">Rarity ${c.rar}</span>`:""}</div>
+ ${statsHtml(c)}${fmt(c.text)}
+ <div class="acts"><button class="chip on" data-add="${c.key}">＋ เพิ่มลงเด็ค</button><button class="chip" data-sub="${c.key}">－ เอาออก</button><span id="mc" class="sum"></span></div>
+ <div class="meta">ใบที่ ${cur+1} จาก ${MA.length}</div></div>`;mcount();$("modal").classList.add("open")}
+function mcount(){const c=MA[cur],e=$("mc");if(c&&e)e.innerHTML=`ในเด็ค <b>${D.cards[c.key]||0}</b> ใบ`}
+function closeM(){$("modal").classList.remove("open")}
+
+/* ===== หน้า: การ์ดทั้งหมด ===== */
+const MFS={};let SPEC=[],list=[],sort="no",mode="gallery",gw=150;
+const SORTS={no:"ซีรีส์",name:"ชื่อ",kind:"ประเภท",rar:"ความหายาก"};
+const MODES={gallery:"🖼 แกลเลอรี",list:"📃 รายการ",table:"📊 ตาราง",series:"📚 แยกตามซีรีส์"};
 try{mode=localStorage.getItem("cl-mode")||"gallery";gw=+localStorage.getItem("cl-gw")||150}catch(e){}
 if(!MODES[mode])mode="gallery";
-const esc=s=>String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
-const thumb=c=>`images/thumb/${c.key}.webp`,full=c=>`images/full/${c.key}.webp`;
-const pic=(c,big)=>`<img ${big?"":'loading="lazy" '}src="${big?full(c):thumb(c)}" alt="${esc(c.name)}">`;
-const rbadge=c=>c.rar!=="ปกติ"?c.rar:"";
-function init(){
- ALL=CARDS.map((c,i)=>({...c,i}));
- const total={};ALL.forEach(c=>{(total[c.deck]=total[c.deck]||new Set()).add(c.no)});
- ALL.forEach(c=>{c.total=total[c.deck].size;c.code=`${c.deck}-${c.no}`});
- const deckItems=[...new Set(ALL.map(c=>c.deck))].map(v=>({v}));
- const rarItems=Object.keys(RORD).filter(r=>ALL.some(c=>c.rar===r)).map(v=>({v}));
- SPEC=MF.prune([
-  {t:"chips",k:"deck",label:"ซีรีส์",items:deckItems},
-  {t:"chips",k:"rar",label:"ความหายาก",items:rarItems}]);
- $("mfBox").innerHTML=MF.render(SPEC,MFS);MFSYNC=MF.bind($("mfBox"),SPEC,MFS,render);
- $("mfBox").hidden=!SPEC.length;
- $("clr").onclick=()=>{$("q").value="";MF.reset(MFS);MFSYNC();render()};
+function initCards(){
+ const u=f=>[...new Set(ALL.map(f))].map(v=>({v}));
+ SPEC=MF.prune([{t:"chips",k:"deck",label:"ซีรีส์",items:u(c=>c.deck)},{t:"chips",k:"kt",label:"ประเภท",items:Object.values(KT).map(v=>({v}))},
+  {t:"chips",k:"color",label:"สี",items:CORD.filter(x=>ALL.some(c=>c.color===x)).map(v=>({v}))},
+  {t:"chips",k:"rar",label:"ความหายาก",items:Object.keys(RORD).map(v=>({v}))}]);
+ $("mfBox").innerHTML=MF.render(SPEC,MFS);const sync=MF.bind($("mfBox"),SPEC,MFS,renderCards);
+ $("clr").onclick=()=>{$("q").value="";MF.reset(MFS);sync();renderCards()};
  $("sorts").innerHTML=Object.entries(SORTS).map(([k,v])=>`<button class="chip" data-s="${k}">${v}</button>`).join(" ");
- $("sorts").onclick=e=>{if(e.target.dataset.s){sort=e.target.dataset.s;render()}};
- $("grid").onclick=e=>{const b=e.target.closest("[data-n]");if(b)show(+b.dataset.n)};
+ $("sorts").onclick=e=>{if(e.target.dataset.s){sort=e.target.dataset.s;renderCards()}};
+ $("grid").onclick=e=>{const b=e.target.closest("[data-n]");if(b)openM(list,+b.dataset.n)};
  $("modeBtns").innerHTML=Object.entries(MODES).map(([k,v])=>`<button class="chip" data-m="${k}">${v}</button>`).join(" ");
- $("modeBtns").onclick=e=>{const k=e.target.dataset.m;if(k){mode=k;try{localStorage.setItem("cl-mode",k)}catch(_){}render()}};
+ $("modeBtns").onclick=e=>{const k=e.target.dataset.m;if(k){mode=k;try{localStorage.setItem("cl-mode",k)}catch(_){}renderCards()}};
  $("sz").value=gw;$("sz").oninput=()=>{gw=+$("sz").value;try{localStorage.setItem("cl-gw",gw)}catch(_){}$("grid").style.setProperty("--gw",gw+"px")};
- $("q").addEventListener("input",render);
- $("prev").onclick=()=>show(cur-1);$("next").onclick=()=>show(cur+1);
- $("modal").onclick=e=>{if(e.target.id==="modal")closeM()};
- addEventListener("keydown",e=>{if(!$("modal").classList.contains("open"))return;if(e.key==="Escape")closeM();if(e.key==="ArrowLeft")show(cur-1);if(e.key==="ArrowRight")show(cur+1)});
- render();
-}
-let MFSYNC=()=>{};
-function render(){
+ $("q").addEventListener("input",renderCards);renderCards()}
+function renderCards(){
  const terms=$("q").value.trim().toLowerCase().split(/\s+/).filter(Boolean);
- list=ALL.filter(c=>MF.has(MFS,"deck",[c.deck])&&MF.has(MFS,"rar",[c.rar])
-  &&(!terms.length||(h=>terms.every(t=>h.includes(t)))([c.no,c.name,c.code,c.rar].join(" ").toLowerCase())));
+ list=ALL.filter(c=>MF.has(MFS,"deck",[c.deck])&&MF.has(MFS,"kt",[c.kt])&&MF.has(MFS,"color",[c.color])&&MF.has(MFS,"rar",[c.rar])
+  &&(!terms.length||(h=>terms.every(t=>h.includes(t)))([c.code,c.name,c.text,c.kt,c.color,c.rar].join(" ").toLowerCase())));
  const nf=MF.count(SPEC,MFS)+(terms.length?1:0);$("clr").hidden=!nf;$("clr").textContent="✕ ล้างการค้นหา"+(nf?` (${nf})`:"");
- list.sort({no:(a,b)=>a.i-b.i,name:(a,b)=>a.name.localeCompare(b.name,"th")||a.i-b.i,rar:(a,b)=>RORD[b.rar]-RORD[a.rar]||a.i-b.i}[sort]);
+ list.sort({no:(a,b)=>a.i-b.i,name:(a,b)=>a.name.localeCompare(b.name,"th")||a.i-b.i,kind:(a,b)=>KORD[a.kind]-KORD[b.kind]||a.i-b.i,rar:(a,b)=>RORD[b.rar]-RORD[a.rar]||a.i-b.i}[sort]);
  document.querySelectorAll("#sorts .chip").forEach(b=>b.classList.toggle("on",b.dataset.s===sort));
  $("cnt").innerHTML=`แสดง <b>${list.length}</b> จาก <b>${ALL.length}</b> การ์ด`;
  document.querySelectorAll("#modeBtns .chip").forEach(b=>b.classList.toggle("on",b.dataset.m===mode));
  $("szw").hidden=!(mode==="gallery"||mode==="series");
  const g=$("grid");g.className="grid"+(mode==="list"?" list":"");g.style.setProperty("--gw",gw+"px");
- const tile=(c,n)=>`<button class="tile" data-n="${n}" aria-label="${esc(c.name)}">${pic(c)}${rbadge(c)?`<span class="rb">${c.rar}</span>`:""}${mode!=="gallery"||gw>=130?`<span class="cap">${esc(c.name)}</span>`:""}</button>`;
+ const tile=(c,n)=>`<button class="tile" data-n="${n}" aria-label="${esc(c.name)}">${pic(c)}${rb(c)?`<span class="rb">${c.rar}</span>`:""}${mode!=="gallery"||gw>=130?`<span class="cap">${esc(c.name)}</span>`:""}</button>`;
  if(!list.length)g.innerHTML='<div class="empty">ไม่พบการ์ดที่ตรงกับเงื่อนไข</div>';
- else if(mode==="list")g.innerHTML=list.map((c,n)=>`<button class="row-i" data-n="${n}">${pic(c)}<span class="ri"><b>${esc(c.name)}</b> <span class="mt">${c.code}${rbadge(c)?" · "+c.rar:""}</span></span></button>`).join("");
- else if(mode==="table")g.innerHTML=`<div class="tbl-w"><table class="ct"><thead><tr><th></th><th>รหัส</th><th>ชื่อ</th><th>ซีรีส์</th><th>Rarity</th></tr></thead><tbody>${list.map((c,n)=>`<tr data-n="${n}"><td><img loading="lazy" src="${thumb(c)}" alt=""></td><td>${c.code}</td><td><b>${esc(c.name)}</b></td><td>${c.deck}</td><td class="num">${c.rar}</td></tr>`).join("")}</tbody></table></div>`;
- else if(mode==="series"){let h="",last="";list.forEach((c,n)=>{if(c.deck!==last){last=c.deck;const t=list.filter(x=>x.deck===c.deck);h+=`<div class="gh"><span>${c.deck}</span><small>${t.length} ใบ</small></div>`}h+=tile(c,n)});g.innerHTML=h}
- else g.innerHTML=list.map(tile).join("");
-}
-function show(n){
- cur=(n+list.length)%list.length;const c=list[cur];
- $("dlg").innerHTML=`<button class="x" onclick="closeM()" aria-label="ปิด">✕</button><div class="big">${pic(c,true)}</div><div><h2>${esc(c.name)}</h2><div class="code">${c.code}/${c.total}</div><div class="tags"><span class="tag gold">${c.deck}</span>${rbadge(c)?`<span class="tag r-${c.rar}">Rarity ${c.rar}</span>`:`<span class="tag">ปกติ</span>`}</div><div class="meta">${c.code}${rbadge(c)?" · "+c.rar:""} · ใบที่ ${cur+1} จาก ${list.length}</div></div>`;
- $("modal").classList.add("open");
-}
-function closeM(){$("modal").classList.remove("open")}
-try{init()}catch(err){document.getElementById("cnt").textContent="เกิดข้อผิดพลาด: "+err.message}
-document.addEventListener("error",e=>{const t=e.target;if(t&&t.tagName==="IMG"&&!window.__imgWarn){window.__imgWarn=1;document.getElementById("cnt").insertAdjacentHTML("afterend",'<div class="cnt" style="color:#ff6b6b">โหลดรูปไม่ได้ — ต้องวางโฟลเดอร์ images ไว้ข้างไฟล์ index.html</div>')}},true);
+ else if(mode==="list")g.innerHTML=list.map((c,n)=>`<button class="row-i" data-n="${n}">${pic(c)}<span class="ri"><b>${esc(c.name)}</b> <span class="mt">${c.code} · ${c.kt} · ${c.color}${c.isU?` · Lv${c.lv} · ${c.pw}`:""}${rb(c)?" · "+c.rar:""}</span></span></button>`).join("");
+ else if(mode==="table")g.innerHTML=`<div class="tbl-w"><table class="ct"><thead><tr><th></th><th>รหัส</th><th>ชื่อ</th><th>ประเภท</th><th>สี</th><th>Lv</th><th>Power</th><th>Cost</th><th>Rarity</th></tr></thead><tbody>${list.map((c,n)=>`<tr data-n="${n}"><td><img loading="lazy" src="${thumb(c)}" alt=""></td><td>${c.code}</td><td><b>${esc(c.name)}</b></td><td>${c.kt}</td><td>${c.color}</td><td class="num">${c.isU?c.lv:"-"}</td><td class="num">${c.isU?c.pw:"-"}</td><td class="num">${c.isU?c.cost:"-"}</td><td class="num">${c.rar}</td></tr>`).join("")}</tbody></table></div>`;
+ else if(mode==="series"){let h="",last="";list.forEach((c,n)=>{if(c.deck!==last){last=c.deck;h+=`<div class="gh"><span>${c.deck}</span><small>${list.filter(x=>x.deck===c.deck).length} ใบ</small></div>`}h+=tile(c,n)});g.innerHTML=h}
+ else g.innerHTML=list.map(tile).join("")}
+
+/* ===== หน้า: สร้างเด็ค ===== */
+const F={q:"",fav:false,tg:{},lv:[0,2],pw:[50,270],cost:[2,4],kind:"",deck:"",rar:"",color:"",kw:"",zone:"all",sort:"no",dir:1};
+const RG=[["lv","Level","lv"],["pw","Power","pw"],["cost","Cost","cost"]];
+const RB={};RG.forEach(([k,,f])=>{const v=ALL.filter(c=>c.isU).map(c=>c[f]);RB[k]=[Math.min(...v),Math.max(...v)];F[k]=RB[k].slice()});
+const TGS=[["aw","Awaken",c=>c.kws.includes("Awaken")],["ar","ARStar",c=>/ARStar/.test(c.name)],["alt","ภาพพิเศษ (RR/SR/SSR)",c=>c.rar!=="ปกติ"],["no","ไม่มีความสามารถ",c=>!c.text]];
+const KM={Unit:c=>c.isU,spell:c=>!c.isU&&!c.rew,Normal:c=>c.kind==="Normal",Battle:c=>c.kind==="Battle",Field:c=>c.kind==="Field",Reward:c=>c.rew};
+const DS={no:"ซีรีส์",name:"ชื่อ",kind:"ประเภท",rar:"ความหายาก",lv:"Level",pw:"Power",cost:"Cost",color:"สี"};
+const opt=(v,l)=>`<option value="${esc(v)}">${esc(l)}</option>`;
+function initDeck(){
+ $("dsorts").innerHTML=Object.entries(DS).map(([k,v])=>`<button class="chip" data-s="${k}">${v}</button>`).join(" ");
+ $("dsorts").onclick=e=>{const k=e.target.dataset.s;if(!k)return;if(F.sort===k)F.dir*=-1;else{F.sort=k;F.dir=1}renderPool()};
+ const rg=RG.map(([k,l])=>`<div class="rg" data-r="${k}"><div class="rgh"><span>${l}</span><b></b></div><div class="rgs"><input type="range" data-i="0" min="${RB[k][0]}" max="${RB[k][1]}" step="${k==="pw"?10:1}" value="${RB[k][0]}"><input type="range" data-i="1" min="${RB[k][0]}" max="${RB[k][1]}" step="${k==="pw"?10:1}" value="${RB[k][1]}"></div></div>`).join("");
+ const uniq=f=>[...new Set(ALL.map(f))];
+ $("dfil").innerHTML=`<div class="tg">${TGS.map(([k,l])=>`<button class="chip" data-g="${k}">${l}</button>`).join("")}<button class="chip" data-a="reset" style="margin-left:auto">✕ ล้างตัวกรอง</button></div><div class="rgs3">${rg}</div>
+ <div class="sels"><select data-f="kind"><option value="">ประเภท: ทั้งหมด</option>${[["Unit","Unit"],["spell","เวทย์ (ทั้งหมด)"],["Normal","เวทย์ Normal"],["Battle","เวทย์ Battle"],["Field","เวทย์ Field"],["Reward","การ์ดรางวัล"]].map(([v,l])=>opt(v,l)).join("")}</select>
+ <select data-f="deck"><option value="">ซีรีส์: ทั้งหมด</option>${uniq(c=>c.deck).map(v=>opt(v,v)).join("")}</select>
+ <select data-f="rar"><option value="">ความหายาก: ทั้งหมด</option>${Object.keys(RORD).map(v=>opt(v,v)).join("")}</select>
+ <select data-f="color"><option value="">สี: ทั้งหมด</option>${CORD.filter(x=>ALL.some(c=>c.color===x)).map(v=>opt(v,v)).join("")}</select>
+ <select data-f="kw"><option value="">Keyword: ทั้งหมด</option>${["AUTO","ACT","CONT","Awaken","ห้วงลึก","1/Turn"].map(v=>opt(v,v)).join("")}</select></div>`;
+ $("dfil").addEventListener("input",e=>{const t=e.target,r=t.closest(".rg");if(r){const k=r.dataset.r,ins=r.querySelectorAll("input");let a=+ins[0].value,b=+ins[1].value;
+   if(t.dataset.i==="0"&&a>b){a=b;t.value=a}if(t.dataset.i==="1"&&b<a){b=a;t.value=b}F[k]=[a,b];rgUi(r,k);return renderPool()}
+  if(t.dataset.f){F[t.dataset.f]=t.value;renderPool()}});
+ $("dfil").addEventListener("click",e=>{const g=e.target.closest("[data-g]");if(g){F.tg[g.dataset.g]=!F.tg[g.dataset.g];return renderPool()}if(e.target.closest("[data-a=reset]"))resetF()});
+ document.querySelectorAll(".rg").forEach(r=>rgUi(r,r.dataset.r));
+ $("zones").innerHTML=[["all","ทั้งหมด"],["main","Main Deck"],["rew","การ์ดรางวัล"]].map(([k,l])=>`<button class="chip" data-z="${k}">${l}</button>`).join("");
+ $("zones").onclick=e=>{const z=e.target.dataset.z;if(z){F.zone=z;renderPool()}};
+ $("dq").addEventListener("input",e=>{F.q=e.target.value;renderPool()});
+ $("favB").onclick=()=>{F.fav=!F.fav;renderPool()};
+ $("dgrid").onclick=e=>{const t=e.target.closest("[data-a]");if(!t)return;const k=t.dataset.k,a=t.dataset.a;
+  if(a==="add")addCard(k,1);else if(a==="sub")addCard(k,-1);
+  else if(a==="fav"){FAV.has(k)?FAV.delete(k):FAV.add(k);LS.set("pod-fav",[...FAV]);t.classList.toggle("on",FAV.has(k));t.textContent=FAV.has(k)?"★":"☆";if(F.fav)renderPool()}
+  else if(a==="z")openM(PL,PL.findIndex(c=>c.key===k))};
+ $("dname").value=D.name||"";$("dname").addEventListener("input",e=>{D.name=e.target.value;persist()});
+ document.querySelectorAll(".dtabs button").forEach(b=>b.onclick=()=>{TAB=b.dataset.t;renderDeck()});
+ $("dside").addEventListener("click",e=>{const t=e.target.closest("[data-a]");if(!t)return;const a=t.dataset.a,k=t.dataset.k;
+  if(a==="add")addCard(k,1);else if(a==="sub")addCard(k,-1);else if(a==="z"){const L=deckList();openM(L,L.findIndex(c=>c.key===k))}
+  else if(a==="new")newDeck();else if(a==="save")saveDeck();else if(a==="load")loadDlg();else if(a==="code")codeDlg();else if(a==="copy")copyCode();else if(a==="img")exportImg();else if(a==="pdf")exportPdf()});
+ $("fgo").onclick=()=>$("dside").scrollIntoView({behavior:"smooth"});
+ renderPool();renderDeck()}
+function rgUi(r,k){const[mn,mx]=RB[k],[a,b]=F[k],s=r.querySelector(".rgs");s.style.setProperty("--a",(a-mn)/(mx-mn)*100+"%");s.style.setProperty("--b",(b-mn)/(mx-mn)*100+"%");
+ r.querySelector("b").textContent=a===mn&&b===mx?"ทั้งหมด":a===b?a:a+" – "+b}
+function resetF(){Object.assign(F,{q:"",fav:false,tg:{},kind:"",deck:"",rar:"",color:"",kw:"",zone:"all"});RG.forEach(([k])=>F[k]=RB[k].slice());
+ $("dq").value="";document.querySelectorAll("#dfil select").forEach(s=>s.value="");
+ document.querySelectorAll(".rg").forEach(r=>{const i=r.querySelectorAll("input");i[0].value=RB[r.dataset.r][0];i[1].value=RB[r.dataset.r][1];rgUi(r,r.dataset.r)});renderPool()}
+let PL=[];
+function renderPool(){
+ const q=F.q.trim().toLowerCase().split(/\s+/).filter(Boolean);
+ PL=ALL.filter(c=>{
+  if(F.zone==="main"&&c.rew||F.zone==="rew"&&!c.rew)return false;
+  if(F.fav&&!FAV.has(c.key))return false;
+  if(F.deck&&c.deck!==F.deck||F.rar&&c.rar!==F.rar||F.color&&c.color!==F.color)return false;
+  if(F.kind&&!KM[F.kind](c))return false;
+  if(F.kw&&!c.kws.includes(F.kw))return false;
+  for(const[k,,f]of RG)if(F[k][0]>RB[k][0]||F[k][1]<RB[k][1])if(!c.isU||c[f]<F[k][0]||c[f]>F[k][1])return false;
+  for(const[k,,fn]of TGS)if(F.tg[k]&&!fn(c))return false;
+  return !q.length||(h=>q.every(t=>h.includes(t)))([c.code,c.name,c.text,c.kt,c.color,c.rar].join(" ").toLowerCase())});
+ const V={no:c=>c.i,name:c=>c.name,kind:c=>KORD[c.kind],rar:c=>RORD[c.rar],lv:c=>c.isU?c.lv:-1,pw:c=>c.isU?c.pw:-1,cost:c=>c.isU?c.cost:-1,color:c=>CORD.indexOf(c.color)}[F.sort];
+ PL.sort((a,b)=>{const x=V(a),y=V(b);return(typeof x==="string"?x.localeCompare(y,"th"):x-y)*F.dir||a.i-b.i});
+ document.querySelectorAll("#dsorts .chip").forEach(b=>{const on=b.dataset.s===F.sort;b.classList.toggle("on",on);b.textContent=DS[b.dataset.s]+(on?(F.dir>0?" ▲":" ▼"):"")});
+ document.querySelectorAll("#dfil [data-g]").forEach(b=>b.classList.toggle("on",!!F.tg[b.dataset.g]));
+ document.querySelectorAll("#zones .chip").forEach(b=>b.classList.toggle("on",b.dataset.z===F.zone));
+ $("favB").classList.toggle("on",F.fav);$("favB").textContent=(F.fav?"★":"☆")+" การ์ดที่ชอบ";
+ $("dcnt").innerHTML=`แสดง <b>${PL.length}</b> จาก <b>${ALL.length}</b> การ์ด`;
+ $("dgrid").innerHTML=PL.map(c=>`<div class="dt" data-k="${c.key}"><button class="im" data-a="z" data-k="${c.key}" aria-label="${esc(c.name)}">${pic(c)}<span class="cn z"></span></button><button class="star" data-a="fav" data-k="${c.key}" aria-label="ชอบ">${FAV.has(c.key)?"★":"☆"}</button>
+  <div class="stp"><button class="m" data-a="sub" data-k="${c.key}" aria-label="ลด">−</button><button class="p" data-a="add" data-k="${c.key}" aria-label="เพิ่ม">+</button></div><div class="dnm">${esc(c.name)}<small>${c.code}${rb(c)?" · "+c.rar:""}</small></div></div>`).join("")||'<div class="empty2" style="grid-column:1/-1">ไม่พบการ์ดที่ตรงกับเงื่อนไข</div>';
+ document.querySelectorAll("#dgrid .star").forEach(s=>s.classList.toggle("on",FAV.has(s.dataset.k)));
+ syncPool()}
+function syncPool(){const{b}=counts();
+ document.querySelectorAll("#dgrid .dt").forEach(t=>{const k=t.dataset.k,n=D.cards[k]||0,c=BY[k],cn=t.querySelector(".cn");cn.textContent=n;cn.classList.toggle("z",!n);t.classList.toggle("in",n>0);
+  t.querySelector(".m").disabled=!n;t.querySelector(".p").disabled=(b[c.base]||0)>=CFG.COPIES});
+ mcount()}
+let TAB="deck";
+const deckList=()=>Object.keys(D.cards).map(k=>BY[k]).sort((a,b)=>KORD[a.kind]-KORD[b.kind]||(a.isU?a.lv:0)-(b.isU?b.lv:0)||a.i-b.i);
+function problems(){const{m,r,b}=counts(),p=[];
+ if(m!==CFG.MAIN)p.push(`Main Deck ต้องมี ${CFG.MAIN} ใบ (ปัจจุบัน ${m} ใบ)`);
+ if(r>CFG.REWARD_MAX)p.push(`การ์ดรางวัลได้ไม่เกิน ${CFG.REWARD_MAX} ใบ (ปัจจุบัน ${r} ใบ)`);
+ for(const[k,n]of Object.entries(b))if(n>CFG.COPIES)p.push(`${k} ใส่เกิน ${CFG.COPIES} ใบ (ปัจจุบัน ${n} ใบ)`);return p}
+function renderDeck(){const{m,r}=counts(),p=problems();
+ $("dsum").innerHTML=`<b>${m}</b> / ${CFG.MAIN} <small>การ์ด</small> &nbsp;·&nbsp; <b>${r}</b> / ${CFG.REWARD_MAX} <small>การ์ดรางวัล</small>`;
+ $("dmsg").innerHTML=p.length?`<div class="msg bad"><b>⚠ เด็คไม่ถูกต้องตามกติกา</b>${p.map(x=>`<p>• ${esc(x)}</p>`).join("")}</div>`:`<div class="msg ok">✓ เด็คถูกต้องตามกติกา พร้อมใช้งาน</div>`;
+ $("fsum").textContent=`เด็ค ${m}/${CFG.MAIN} · รางวัล ${r}/${CFG.REWARD_MAX}`;
+ $("loadB").textContent=`📂 โหลด (${LS.get("pod-decks",[]).length})`;
+ document.querySelectorAll(".dtabs button").forEach(b=>b.classList.toggle("on",b.dataset.t===TAB));
+ const L=deckList(),box=$("dbody");
+ if(TAB==="stats"){box.innerHTML=statsTab(L);return}
+ if(!L.length){box.innerHTML='<div class="empty2">ยังไม่มีการ์ดในเด็ค<br><small>เลือกการ์ดจากด้านซ้าย</small></div>';return}
+ const G=[["Unit",c=>c.isU],["เวทย์",c=>!c.isU&&!c.rew],["การ์ดรางวัล",c=>c.rew]];
+ box.innerHTML=G.map(([l,f])=>{const a=L.filter(f);if(!a.length)return"";return`<div class="gh2"><span>${l}</span><small>${a.reduce((s,c)=>s+D.cards[c.key],0)} ใบ</small></div><div class="mgrid">${a.map(c=>`<div class="mt"><button class="im" data-a="z" data-k="${c.key}" aria-label="${esc(c.name)}">${pic(c)}<span class="cn">${D.cards[c.key]}</span></button><div class="stp"><button class="m" data-a="sub" data-k="${c.key}">−</button><button class="p" data-a="add" data-k="${c.key}">+</button></div></div>`).join("")}</div>`}).join("")}
+function statsTab(L){if(!L.length)return'<div class="empty2">ยังไม่มีข้อมูลสถิติ</div>';
+ const rows=(t,items)=>{const mx=Math.max(1,...items.map(x=>x[1]));return`<div class="gh2"><span>${t}</span></div>`+items.map(([l,n,col])=>`<div class="bar"><span>${esc(l)}</span><i style="width:${n/mx*60}%;${col?"background:"+col:""}"></i><b>${n}</b></div>`).join("")};
+ const sum=(f)=>L.filter(f).reduce((s,c)=>s+D.cards[c.key],0),U=L.filter(c=>c.isU),nU=sum(c=>c.isU);
+ const lv=[0,1,2].map(v=>[`Level ${v}`,sum(c=>c.isU&&c.lv===v)]),cs=[2,3,4].map(v=>[`Cost ${v}`,sum(c=>c.isU&&c.cost===v)]);
+ const pb=[[50,90],[100,140],[150,190],[200,240],[250,300]].map(([a,b])=>[`${a}–${b}`,sum(c=>c.isU&&c.pw>=a&&c.pw<=b)]);
+ const avg=nU?Math.round(U.reduce((s,c)=>s+c.pw*D.cards[c.key],0)/nU):0;
+ return rows("ประเภท",[["Unit",nU],["เวทย์ Normal",sum(c=>c.kind==="Normal")],["เวทย์ Battle",sum(c=>c.kind==="Battle")],["เวทย์ Field",sum(c=>c.kind==="Field")],["การ์ดรางวัล",sum(c=>c.rew)]])
+ +rows("สี",CORD.map(x=>[x,sum(c=>c.color===x),CC[x]]).filter(x=>x[1]))+rows("Level (Unit)",lv)+rows("Cost (Unit)",cs)+rows("Power (Unit)",pb)+`<p class="meta">Power เฉลี่ยของ Unit: <b>${avg}</b></p>`}
+function newDeck(){if(Object.keys(D.cards).length&&!confirm("ล้างเด็คปัจจุบันแล้วสร้างใหม่? (เด็คที่ยังไม่ได้บันทึกจะหายไป)"))return;D={name:"",cards:{}};$("dname").value="";persist();renderDeck();syncPool()}
+function saveDeck(){if(!Object.keys(D.cards).length)return toast("ยังไม่มีการ์ดในเด็ค");const a=LS.get("pod-decks",[]);
+ if(!D.id)D.id="d"+Date.now().toString(36);const nm=(D.name||"").trim()||"เด็คไม่มีชื่อ",rec={id:D.id,name:nm,cards:{...D.cards},t:Date.now()},i=a.findIndex(x=>x.id===D.id);
+ if(i>=0)a[i]=rec;else a.push(rec);D.name=nm;$("dname").value=nm;LS.set("pod-decks",a);persist();renderDeck();toast("บันทึกเด็คแล้ว ✓")}
+const ov=h=>{$("ovb").innerHTML=h;$("dov").classList.add("open")},closeOv=()=>$("dov").classList.remove("open");
+$("dov").addEventListener("click",e=>{if(e.target.id==="dov"||e.target.closest("[data-x]"))closeOv()});
+function loadDlg(){const a=LS.get("pod-decks",[]).sort((x,y)=>y.t-x.t);
+ ov(`<h2>เด็คที่บันทึกไว้</h2>${a.map(d=>`<div class="sv"><div><b>${esc(d.name)}</b><br><small>${Object.values(d.cards).reduce((s,n)=>s+n,0)} ใบ</small></div><button class="chip on" data-ld="${d.id}">โหลด</button><button class="chip" data-dl="${d.id}">ลบ</button></div>`).join("")||'<div class="empty2">ยังไม่มีเด็คที่บันทึก</div>'}<div class="acts"><button class="chip" data-x>ปิด</button></div>`)}
+$("ovb").addEventListener("click",e=>{const t=e.target.closest("[data-ld],[data-dl],[data-im],[data-cp]");if(!t)return;const a=LS.get("pod-decks",[]);
+ if(t.dataset.ld){const d=a.find(x=>x.id===t.dataset.ld);if(d){D={id:d.id,name:d.name,cards:{...d.cards}};$("dname").value=d.name;persist();renderDeck();syncPool();closeOv();toast("โหลดเด็คแล้ว ✓")}}
+ else if(t.dataset.dl){if(confirm("ลบเด็คนี้?")){LS.set("pod-decks",a.filter(x=>x.id!==t.dataset.dl));renderDeck();loadDlg()}}
+ else if(t.dataset.cp){copyText($("ctx").value).then(ok=>toast(ok?"คัดลอกรหัสแล้ว ✓":"เลือกข้อความแล้วกด Ctrl+C"))}
+ else if(t.dataset.im)importCode($("ctx").value)});
+const enc=()=>"POD2:"+(D.name||"").replace(/[:,]/g," ")+":"+Object.entries(D.cards).map(([k,n])=>k+"."+n).join(",");
+function codeDlg(){ov(`<h2>รหัสเด็ค</h2><p class="meta">คัดลอกรหัสด้านล่างเพื่อแชร์เด็คนี้ หรือวางรหัสของเพื่อนแล้วกด "นำเข้า"</p><textarea id="ctx">${Object.keys(D.cards).length?enc():""}</textarea><div class="acts"><button class="chip on" data-cp="1">คัดลอกรหัส</button><button class="chip" data-im="1">นำเข้าเด็คจากรหัส</button><button class="chip" data-x>ปิด</button></div>`)}
+function importCode(s){try{s=s.trim();let name="",c={};
+ if(/^POD2:/.test(s)){const p=s.slice(5),i=p.lastIndexOf(":");name=p.slice(0,i);for(const it of p.slice(i+1).split(",")){const[k,n]=it.trim().split(".");if(BY[k]&&+n>0)c[k]=Math.min(CFG.COPIES,Math.floor(+n))}}
+ else{const o=JSON.parse(decodeURIComponent(escape(atob(s.replace(/^POD1:/,"").replace(/-/g,"+").replace(/_/g,"/")))));name=o.n||"";for(const[k,n]of Object.entries(o.c||{}))if(BY[k]&&n>0)c[k]=Math.min(CFG.COPIES,Math.floor(n))}
+ if(!Object.keys(c).length)throw 0;D={name:name||"เด็คที่นำเข้า",cards:c};$("dname").value=D.name;persist();renderDeck();syncPool();closeOv();toast("นำเข้าเด็คแล้ว ✓")}catch(e){toast("รหัสไม่ถูกต้อง")}}
+async function copyText(t){let ok=false;try{await navigator.clipboard.writeText(t);ok=true}catch(_){}
+ if(!ok){const a=document.createElement("textarea");a.value=t;a.style.cssText="position:fixed;opacity:0";document.body.appendChild(a);a.select();try{ok=document.execCommand("copy")}catch(_){}a.remove()}return ok}
+async function copyCode(){if(!Object.keys(D.cards).length)return toast("ยังไม่มีการ์ดในเด็ค");toast(await copyText(enc())?"คัดลอกรหัสเด็คแล้ว ✓":"คัดลอกไม่ได้ ใช้ปุ่ม “ใช้รหัสเด็ค” แล้วเลือกข้อความเอง")}
+/* ===== ส่งออกเป็นภาพ / PDF ===== */
+const FONT='"Mali","Noto Sans Thai",Tahoma,sans-serif';
+async function sheet(){const L=deckList();if(!L.length)throw new Error("ยังไม่มีการ์ดในเด็ค");
+ const W=1240,H=1754,M=50,cv=document.createElement("canvas");cv.width=W;cv.height=H;const x=cv.getContext("2d");
+ const imgs=await Promise.all(L.map(c=>new Promise((res,rej)=>{const i=new Image();i.onload=()=>res(i);i.onerror=()=>rej(new Error("โหลดรูปการ์ดไม่ได้"));i.src=thumb(c)})));
+ x.fillStyle="#fff";x.fillRect(0,0,W,H);x.textBaseline="top";x.fillStyle="#111";
+ const{m,r}=counts(),p=problems();
+ x.font=`bold 56px ${FONT}`;x.fillText(D.name||"เด็คของฉัน",M,40,W-2*M);
+ x.font=`28px ${FONT}`;x.fillStyle="#444";
+ x.fillText(`Main Deck ${m}/${CFG.MAIN}  ·  การ์ดรางวัล ${r}/${CFG.REWARD_MAX}  ·  ${p.length?"⚠ "+p[0]:"✓ ถูกต้องตามกติกา"}  ·  ${new Date().toLocaleDateString("th-TH")}`,M,115,W-2*M);
+ x.fillStyle="#111";x.fillRect(M,165,W-2*M,3);
+ const code=enc(),fs=22;x.font=`${fs}px monospace`;
+ const lines=[];let cur="";for(const part of code.split(/(?<=,)/)){if(x.measureText(cur+part).width>W-2*M&&cur){lines.push(cur);cur=""}cur+=part}if(cur)lines.push(cur);
+ const footH=60+lines.length*(fs+6)+30,top=190,availH=H-top-footH-M,gap=14,n=L.length;let best=null;
+ for(let cols=4;cols<=12;cols++){const w=(W-2*M-(cols-1)*gap)/cols,h=w/0.716,rows=Math.ceil(n/cols);if(rows*(h+gap)-gap<=availH){best={cols,w,h};break}}
+ if(!best){const cols=12,w=(W-2*M-11*gap)/12;best={cols,w,h:w/0.716}}
+ L.forEach((c,i)=>{const col=i%best.cols,row=Math.floor(i/best.cols),cx=M+col*(best.w+gap),cy=top+row*(best.h+gap),im=imgs[i],sc=Math.min(best.w/im.width,best.h/im.height),dw=im.width*sc,dh=im.height*sc;
+  x.drawImage(im,cx,cy+(best.h-dh)/2,dw,dh);const rad=Math.max(16,best.w*.13),bx=cx+rad+4,by=cy+best.h-rad-4;
+  x.beginPath();x.arc(bx,by,rad,0,7);x.fillStyle="#ffc20e";x.fill();x.lineWidth=3;x.strokeStyle="#111";x.stroke();
+  x.fillStyle="#111";x.font=`bold ${Math.round(rad*1.1)}px ${FONT}`;x.textAlign="center";x.textBaseline="middle";x.fillText("×"+D.cards[c.key],bx,by+1);x.textAlign="left";x.textBaseline="top"});
+ const fy=H-footH-M+10;x.fillStyle="#111";x.fillRect(M,fy,W-2*M,2);x.font=`bold 26px ${FONT}`;x.fillText("รหัสเด็ค (คัดลอกแล้ววางที่ปุ่ม “ใช้รหัสเด็ค”)",M,fy+14);
+ x.font=`${fs}px monospace`;x.fillStyle="#333";lines.forEach((l,i)=>x.fillText(l,M,fy+56+i*(fs+6)));
+ return cv}
+const fname=()=>((D.name||"deck").replace(/[\\/:*?"<>|]+/g,"_").trim()||"deck");
+function dlBlob(b,n){const a=document.createElement("a");a.href=URL.createObjectURL(b);a.download=n;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),3000)}
+const expErr=e=>toast(e&&e.name==="SecurityError"?"บันทึกไม่ได้เมื่อเปิดไฟล์ตรง ๆ — ให้รัน node server.js หรืออัปโหลดขึ้นเว็บก่อน":(e&&e.message)||"บันทึกไม่สำเร็จ");
+async function exportImg(){try{const cv=await sheet();const b=await new Promise((res,rej)=>cv.toBlob(x=>x?res(x):rej(new Error("สร้างภาพไม่สำเร็จ")),"image/png"));dlBlob(b,fname()+".png");toast("บันทึกภาพแล้ว ✓")}catch(e){expErr(e)}}
+async function exportPdf(){try{const cv=await sheet(),jb=atob(cv.toDataURL("image/jpeg",0.93).split(",")[1]),jpg=new Uint8Array(jb.length);for(let i=0;i<jb.length;i++)jpg[i]=jb.charCodeAt(i);
+ const te=new TextEncoder(),parts=[],off=[];let len=0;const put=d=>{const u=typeof d==="string"?te.encode(d):d;parts.push(u);len+=u.length};
+ const ob=(n,h,body)=>{off[n]=len;put(`${n} 0 obj\n${h}\n`);if(body){put("stream\n");put(body);put("\nendstream\n")}put("endobj\n")};
+ const cs=`q 595.28 0 0 841.89 0 0 cm /Im0 Do Q`;put("%PDF-1.4\n");
+ ob(1,"<< /Type /Catalog /Pages 2 0 R >>");ob(2,"<< /Type /Pages /Kids [3 0 R] /Count 1 >>");
+ ob(3,"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /XObject << /Im0 4 0 R >> >> /Contents 5 0 R >>");
+ ob(4,`<< /Type /XObject /Subtype /Image /Width ${cv.width} /Height ${cv.height} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode /Length ${jpg.length} >>`,jpg);
+ ob(5,`<< /Length ${cs.length} >>`,cs);
+ const xr=len;put("xref\n0 6\n0000000000 65535 f \n");for(let i=1;i<=5;i++)put(String(off[i]).padStart(10,"0")+" 00000 n \n");
+ put(`trailer\n<< /Size 6 /Root 1 0 R >>\nstartxref\n${xr}\n%%EOF`);
+ dlBlob(new Blob(parts,{type:"application/pdf"}),fname()+".pdf");toast("บันทึก PDF แล้ว ✓")}catch(e){expErr(e)}}
+
+/* ===== modal / routing ===== */
+$("prev").onclick=()=>showM(cur-1);$("next").onclick=()=>showM(cur+1);
+$("modal").onclick=e=>{if(e.target.id==="modal")closeM()};
+$("dlg").addEventListener("click",e=>{const a=e.target.closest("[data-add],[data-sub]");if(a){addCard(a.dataset.add||a.dataset.sub,a.dataset.add?1:-1)}});
+addEventListener("keydown",e=>{if(e.key==="Escape"){closeM();closeOv();return}if(!$("modal").classList.contains("open"))return;if(e.key==="ArrowLeft")showM(cur-1);if(e.key==="ArrowRight")showM(cur+1)});
+function route(){const d=location.hash==="#deck";$("vCards").hidden=d;$("vDeck").hidden=!d;$("fbar").hidden=!d;$("nC").classList.toggle("on",!d);$("nD").classList.toggle("on",d);document.title=d?"สร้างเด็ค":"การ์ดทั้งหมด";closeM()}
+addEventListener("hashchange",route);
+try{initCards();initDeck();route()}catch(err){$("cnt").textContent="เกิดข้อผิดพลาด: "+err.message;console.error(err)}
+document.addEventListener("error",e=>{const t=e.target;if(t&&t.tagName==="IMG"&&!window.__w){window.__w=1;$("cnt").insertAdjacentHTML("afterend",'<div class="cnt" style="color:#ff6b6b">โหลดรูปไม่ได้ — ต้องวางโฟลเดอร์ images ไว้ข้างไฟล์ index.html</div>')}},true);
+
 </script>
 </body></html>
