@@ -5,7 +5,23 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🃏%3C/text%3E%3C/svg%3E">
 <title>การ์ดทั้งหมด</title>
 <link href="https://fonts.googleapis.com/css2?family=Mali:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/lobby.css?v=1">
+<style>
+/* ธีมล็อบบี้ — ใช้ร่วมกันทุกหน้า (Home · Decks · Cards · Shop · เกม · Admin) ให้สี/พื้นหลังเป็นชุดเดียวกับแถบเมนูและหน้า Home
+   พื้นหลังกรมท่าเข้ม + ลายหกเหลี่ยมจาง · แผงสีน้ำเงินเข้ม · ขอบดำ · ทองเป็นสีเน้น
+   โหลดเป็นไฟล์สุดท้ายของทุกหน้า; ใช้ :root:root:root ให้ชนะกติกา dark/light เดิมในแต่ละไฟล์ */
+:root:root:root{
+  --paper:#0d1a26;--panel:#152a3b;--ink:#eef3f7;--ink2:#9fb4c4;--line:#02060a;--soft:#223c52;--rule:transparent;--mat:#1b3347;
+  --coral:#ff6b6b;--teal:#5aa2ff;--tealtint:rgba(90,162,255,.14);--gold:#ffc20e;--good:#4cc16b;--bad:#ff6b6b;--warn:#e3b341;--shade:rgba(0,0,0,.8);
+  --sh:4px 4px 0 #02060a;--hexbg:#112334;--hexsvg:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='98' viewBox='0 0 28 49'%3E%3Cpath fill-rule='evenodd' d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z' fill='%23fff' fill-opacity='.07'/%3E%3C/svg%3E");--bar:#0f1c27;--sub:#13202d;
+  /* ชื่อตัวแปรของหน้า Card List / Deckbuilder (public/index.html) */
+  --bg:#0d1a26;--card:#152a3b;--mut:#9fb4c4;--pap:#1b3347;
+  color-scheme:dark}
+html body{background-color:#0d1a26;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='98' viewBox='0 0 28 49'%3E%3Cpath fill-rule='evenodd' d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z' fill='%23fff' fill-opacity='.045'/%3E%3C/svg%3E"),radial-gradient(110% 70% at 15% -10%,rgba(40,120,150,.35),transparent 60%),radial-gradient(90% 60% at 100% 0,rgba(255,194,14,.07),transparent 60%);background-attachment:fixed;color:var(--ink)}
+::selection{background:var(--gold);color:#111}
+/* แถบเลื่อน: โทนเดียวกัน */
+*{scrollbar-color:#2f5069 #0d1a26}
+
+</style>
 <style>
 :root{--bg:#fbfbf7;--ink:#111;--card:#fff;--line:#bfe3ea;--gold:#ffc20e;--mut:#666;--pap:#fff8ec;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
@@ -73,8 +89,136 @@ table.ct{border-collapse:collapse;width:100%;min-width:480px}
 <div class="grid" id="grid"></div>
 </main>
 <div id="modal"><button class="nav" id="prev" aria-label="ก่อนหน้า">‹</button><div class="dlg box" id="dlg"></div><button class="nav" id="next" aria-label="ถัดไป">›</button></div>
-<script src="cards.js"></script>
-<script src="mfilter.js"></script>
+<script>
+/* ข้อมูลการ์ด — สร้างจากโฟลเดอร์ pod · เพิ่มการ์ดใหม่ = ใส่รูปใน images/thumb + images/full แล้วเพิ่มแถวที่นี่ */
+const CARDS=[{"key": "TD00-001","deck": "TD00","no": "001","name": "เดฟ","rar": "ปกติ"},{"key": "TD00-002","deck": "TD00","no": "002","name": "คาลิสต้า","rar": "ปกติ"},{"key": "TD00-003","deck": "TD00","no": "003","name": "ลีมู","rar": "ปกติ"},{"key": "TD00-004","deck": "TD00","no": "004","name": "โพรุ","rar": "ปกติ"},{"key": "TD00-005","deck": "TD00","no": "005","name": "คารุ","rar": "ปกติ"},{"key": "TD00-006","deck": "TD00","no": "006","name": "ผู้ถูกเลือก","rar": "ปกติ"},{"key": "TD00-007","deck": "TD00","no": "007","name": "ชะตาของเธอเป็นเช่นไร","rar": "ปกติ"},{"key": "TD00-008","deck": "TD00","no": "008","name": "แสงแห่งชีวิต","rar": "ปกติ"},{"key": "TD00-008-SR","deck": "TD00","no": "008","name": "แสงแห่งชีวิต","rar": "SR"},{"key": "TD00-009","deck": "TD00","no": "009","name": "พลังหญ้ายี","rar": "ปกติ"},{"key": "TD00-010","deck": "TD00","no": "010","name": "คู่ต่อสู้ที่คู่ควร","rar": "ปกติ"},{"key": "TD00-011","deck": "TD00","no": "011","name": "พระเอกมาแล้ว","rar": "ปกติ"},{"key": "TD00-012","deck": "TD00","no": "012","name": "สุริยันค้ำฟ้า","rar": "ปกติ"},{"key": "TD00-012-SR","deck": "TD00","no": "012","name": "สุริยันค้ำฟ้า","rar": "SR"},{"key": "TD00-013","deck": "TD00","no": "013","name": "การพิทักษ์ของดรีม","rar": "ปกติ"},{"key": "TD00-014","deck": "TD00","no": "014","name": "ดึ๋งดั๋ง โดปามีน","rar": "ปกติ"},{"key": "TD00-014-SR","deck": "TD00","no": "014","name": "ดึ๋งดั๋ง โดปามีน","rar": "SR"},{"key": "TD00-015","deck": "TD00","no": "015","name": "การท้าทายของขาเลาะ","rar": "ปกติ"},{"key": "TD01-001","deck": "TD01","no": "001","name": "แอสเทอรอธ ARStar","rar": "ปกติ"},{"key": "TD01-001-RR","deck": "TD01","no": "001","name": "แอสเทอรอธ ARStar","rar": "RR"},{"key": "TD01-001-SR","deck": "TD01","no": "001","name": "แอสเทอรอธ ARStar","rar": "SR"},{"key": "TD01-001-SSR","deck": "TD01","no": "001","name": "แอสเทอรอธ ARStar","rar": "SSR"},{"key": "TD01-002","deck": "TD01","no": "002","name": "ราชันย์มังกร แอสเทอรอธ","rar": "ปกติ"},{"key": "TD01-003","deck": "TD01","no": "003","name": "เฮียวกะอัลฟ่า","rar": "ปกติ"},{"key": "TD01-004","deck": "TD01","no": "004","name": "จิคนิค","rar": "ปกติ"},{"key": "TD01-004-SR","deck": "TD01","no": "004","name": "จิคนิค","rar": "SR"},{"key": "TD01-005","deck": "TD01","no": "005","name": "แฟมิเน่","rar": "ปกติ"},{"key": "TD01-006","deck": "TD01","no": "006","name": "โซลาร์","rar": "ปกติ"},{"key": "TD01-006-SR","deck": "TD01","no": "006","name": "โซลาร์","rar": "SR"},{"key": "TD01-007","deck": "TD01","no": "007","name": "เซอ","rar": "ปกติ"},{"key": "TD01-008","deck": "TD01","no": "008","name": "โชคชะตาเปลี่ยนผัน","rar": "ปกติ"},{"key": "TD01-009","deck": "TD01","no": "009","name": "เสียงคำรามราชันต์มังกร","rar": "ปกติ"},{"key": "TD01-010","deck": "TD01","no": "010","name": "วิหารเทียแมท","rar": "ปกติ"},{"key": "TD02-001","deck": "TD02","no": "001","name": "ไอวี่ ARStar","rar": "ปกติ"},{"key": "TD02-001-RR","deck": "TD02","no": "001","name": "ไอวี่ ARStar","rar": "RR"},{"key": "TD02-001-SSR","deck": "TD02","no": "001","name": "ไอวี่ ARStar","rar": "SSR"},{"key": "TD02-002","deck": "TD02","no": "002","name": "โรคระบาด ไอวี่","rar": "ปกติ"},{"key": "TD02-003","deck": "TD02","no": "003","name": "เตกีล่า","rar": "ปกติ"},{"key": "TD02-004","deck": "TD02","no": "004","name": "มอร์","rar": "ปกติ"},{"key": "TD02-004-SR","deck": "TD02","no": "004","name": "มอร์","rar": "SR"},{"key": "TD02-005","deck": "TD02","no": "005","name": "เมย์ลิน","rar": "ปกติ"},{"key": "TD02-006","deck": "TD02","no": "006","name": "เอร่า","rar": "ปกติ"},{"key": "TD02-006-SR","deck": "TD02","no": "006","name": "เอร่า","rar": "SR"},{"key": "TD02-007","deck": "TD02","no": "007","name": "อิทส์ฮาย","rar": "ปกติ"},{"key": "TD02-008","deck": "TD02","no": "008","name": "โชคชะตาเปลี่ยนผัน","rar": "ปกติ"},{"key": "TD02-009","deck": "TD02","no": "009","name": "เติมปุ๋ยหน่อยนะ","rar": "ปกติ"},{"key": "TD02-010","deck": "TD02","no": "010","name": "ดงเห็ดเผด็จศึก","rar": "ปกติ"},{"key": "TD03-001","deck": "TD03","no": "001","name": "เซนิท ARStar","rar": "ปกติ"},{"key": "TD03-001-RR","deck": "TD03","no": "001","name": "เซนิท ARStar","rar": "RR"},{"key": "TD03-002","deck": "TD03","no": "002","name": "เสียงเพรียกจากนภา เซนิท","rar": "ปกติ"},{"key": "TD03-003","deck": "TD03","no": "003","name": "บาเบล","rar": "ปกติ"},{"key": "TD03-004","deck": "TD03","no": "004","name": "แม็กนั่ม","rar": "ปกติ"},{"key": "TD03-004-SR","deck": "TD03","no": "004","name": "แม็กนั่ม","rar": "SR"},{"key": "TD03-005","deck": "TD03","no": "005","name": "มิลเลนเนีย","rar": "ปกติ"},{"key": "TD03-006","deck": "TD03","no": "006","name": "เอฟฟี่","rar": "ปกติ"},{"key": "TD03-006-SR","deck": "TD03","no": "006","name": "เอฟฟี่","rar": "SR"},{"key": "TD03-007","deck": "TD03","no": "007","name": "สยามเนโกะ","rar": "ปกติ"},{"key": "TD03-008","deck": "TD03","no": "008","name": "โชคชะตาเปลี่ยนผัน","rar": "ปกติ"},{"key": "TD03-009","deck": "TD03","no": "009","name": "ที่ซึ่งหมู่ดาวเปล่งประกาย","rar": "ปกติ"},{"key": "TD03-010","deck": "TD03","no": "010","name": "ร่องรอยแห่งดวงดาว","rar": "ปกติ"},{"key": "TD04-001","deck": "TD04","no": "001","name": "เนอร์วาน่า ARStar","rar": "ปกติ"},{"key": "TD04-002","deck": "TD04","no": "002","name": "หุ่นกระบอกมีชีวิต เนอร์วาน่า","rar": "ปกติ"},{"key": "TD04-003","deck": "TD04","no": "003","name": "ลิสเซ่น","rar": "ปกติ"},{"key": "TD04-004","deck": "TD04","no": "004","name": "อาร์ก","rar": "ปกติ"},{"key": "TD04-005","deck": "TD04","no": "005","name": "ยูนิวี่","rar": "ปกติ"},{"key": "TD04-006","deck": "TD04","no": "006","name": "เซลีน","rar": "ปกติ"},{"key": "TD04-007","deck": "TD04","no": "007","name": "บากุ","rar": "ปกติ"},{"key": "TD04-008","deck": "TD04","no": "008","name": "โชคชะตาเปลี่ยนผัน","rar": "ปกติ"},{"key": "TD04-009","deck": "TD04","no": "009","name": "ควบคุมสมบูรณ์แบบ","rar": "ปกติ"},{"key": "TD04-010","deck": "TD04","no": "010","name": "ดอกบัวแห่งนิพพาน","rar": "ปกติ"},{"key": "PZ-001","deck": "PZ","no": "001","name": "พรจากดรีม","rar": "ปกติ"},{"key": "PZ-002","deck": "PZ","no": "002","name": "พรจากเรียล","rar": "ปกติ"}];
+
+</script>
+<script>
+/* ตัวกรองแบบเลือกได้หลายตัว (multi-select) ใช้ร่วมกันระหว่าง Card List และ Deckbuilder
+   state = { k: [ค่าที่เลือก], __m: { k: 'any'|'all' }, __r: { k: [min|null, max|null] } }
+   spec  = [{ t:'chips', k, label, items:[{v,l,i}], mode:true, adv:true, limit }, { t:'range', k, label, min, max, adv:true }]
+   - ในกลุ่มเดียวกัน = "หรือ" (เลือก Unit + Spell = ได้ทั้งสองประเภท) · ข้ามกลุ่ม = "และ"
+   - กลุ่มที่ mode:true (ธาตุ, Keyword, เผ่า) สลับเป็น "ต้องตรงครบทุกอัน" ได้
+   - ช่วงตัวเลข (Cost / ATK / DEF / CRI) ใส่ต่ำสุด–สูงสุด ปล่อยว่างข้างใดข้างหนึ่งได้ · การ์ดที่ไม่มีค่านั้น (เช่น Spell ไม่มี ATK) จะถูกซ่อนเมื่อกรองช่วงนั้น */
+(function () {
+  'use strict';
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
+  const CSS = `
+.mf{display:grid;gap:12px}
+.mf-g{border:0;margin:0;padding:0;min-width:0}
+.mf-g>legend{font-weight:700;padding:0;margin:0 0 6px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.mf-g>legend i{font-style:normal;background:var(--gold,#ffc20e);color:#111;border-radius:99px;padding:0 8px;font-size:.75rem;line-height:1.5}
+.mf-chips{display:flex;flex-wrap:wrap;gap:6px}
+.mf-chips .chip{padding:3px 12px;font-size:.92rem;display:inline-flex;align-items:center;gap:5px}
+.mf-chips .chip[hidden]{display:none}
+.mf-mode{font:inherit;font-size:.75rem;font-weight:400;border:1px dashed currentColor;background:none;color:inherit;border-radius:99px;padding:0 10px;cursor:pointer;opacity:.85}
+.mf-mode.all{border-style:solid;font-weight:700;opacity:1}
+.mf-more{font:inherit;font-size:.85rem;border:0;background:none;color:inherit;text-decoration:underline;cursor:pointer;padding:3px 6px}
+.mf-rng{display:flex;align-items:center;gap:6px}
+.mf-rng input{width:78px!important;padding:5px 8px!important;border-width:2px!important;border-radius:10px!important}
+.mf-ranges{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.mf-adv{border:2px dashed currentColor;border-radius:12px;padding:8px 12px}
+.mf-adv>summary{cursor:pointer;font-weight:700}
+.mf-adv[open]>summary{margin-bottom:10px}.mf-adv>.mf{margin-top:2px}
+.mf-sum{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.mf-sum:empty{display:none}
+.mf-tag{font:inherit;font-size:.82rem;border:2px solid currentColor;border-radius:99px;background:none;color:inherit;padding:0 10px;cursor:pointer}
+.mf-tag b{margin-left:4px}.mf-tag:hover{background:var(--gold,#ffc20e);color:#111;border-color:#111}
+.mf-clr{font:inherit;border:2px solid currentColor;border-radius:99px;background:none;color:inherit;padding:2px 14px;cursor:pointer;font-weight:700}
+.mf-clr:hover{background:var(--gold,#ffc20e);color:#111;border-color:#111}`;
+  function css() { if (document.getElementById('mf-css')) return; const s = document.createElement('style'); s.id = 'mf-css'; s.textContent = CSS; document.head.appendChild(s); }
+
+  const arr = (st, k) => st[k] || (st[k] = []);
+  const modeOf = (st, k) => (st.__m && st.__m[k]) || 'any';
+  const rangeOf = (st, k) => (st.__r && st.__r[k]) || [null, null];
+  const num = v => (v === '' || v == null || !isFinite(Number(v)) ? null : Number(v));
+
+  function chipsHtml(g, st) {
+    const sel = arr(st, g.k), lim = g.limit || 0, big = lim && g.items.length > lim + 2;
+    const open = big && g.items.slice(lim).some(it => sel.includes(it.v));
+    const btn = (it, i) => `<button type="button" class="chip mf-c${sel.includes(it.v) ? ' on' : ''}" data-mf="${esc(g.k)}" data-v="${esc(it.v)}" aria-pressed="${sel.includes(it.v)}"${big && i >= lim && !open ? ' hidden data-x="1"' : ''}>${it.i || ''}${esc(it.l == null ? it.v : it.l)}</button>`;
+    return `<fieldset class="mf-g" data-g="${esc(g.k)}"><legend>${esc(g.label)} <i${sel.length ? '' : ' hidden'}>${sel.length}</i>${g.mode ? `<button type="button" class="mf-mode" data-mf-mode="${esc(g.k)}"></button>` : ''}</legend>
+      <div class="mf-chips">${g.items.map(btn).join('')}${big ? `<button type="button" class="mf-more" data-mf-more="${esc(g.k)}"${open ? ' data-open="1"' : ''}>${open ? 'ย่อ' : `แสดงทั้งหมด (+${g.items.length - lim})`}</button>` : ''}</div></fieldset>`;
+  }
+  function rangeHtml(g, st) {
+    const r = rangeOf(st, g.k);
+    return `<fieldset class="mf-g" data-g="${esc(g.k)}"><legend>${esc(g.label)}</legend><div class="mf-rng"><input type="number" inputmode="numeric" data-mf-r="${esc(g.k)}" data-e="0" min="${g.min ?? 0}" max="${g.max ?? ''}" step="1" placeholder="${g.min ?? 0}" value="${r[0] == null ? '' : r[0]}" aria-label="${esc(g.label)} ต่ำสุด"><span>–</span><input type="number" inputmode="numeric" data-mf-r="${esc(g.k)}" data-e="1" min="${g.min ?? 0}" max="${g.max ?? ''}" step="1" placeholder="${g.max ?? ''}" value="${r[1] == null ? '' : r[1]}" aria-label="${esc(g.label)} สูงสุด"></div></fieldset>`;
+  }
+  function part(spec, st) {
+    const ch = spec.filter(g => g.t === 'chips').map(g => chipsHtml(g, st)).join(''), rg = spec.filter(g => g.t === 'range').map(g => rangeHtml(g, st)).join('');
+    return ch + (rg ? `<div class="mf-ranges">${rg}</div>` : '');
+  }
+  // → HTML ทั้งชุด: แถบสรุปตัวกรองที่ใช้ + กลุ่มหลัก + (ขั้นสูงใน <details>)
+  function render(spec, st) {
+    css();
+    const basic = spec.filter(g => !g.adv), adv = spec.filter(g => g.adv);
+    return `<div class="mf"><div class="mf-sum"></div>${part(basic, st)}${adv.length ? `<details class="mf-adv"${adv.some(g => active(g, st)) ? ' open' : ''}><summary>ตัวกรองขั้นสูง <span class="mf-advn"></span></summary><div class="mf">${part(adv, st)}</div></details>` : ''}</div>`;
+  }
+  function active(g, st) { if (g.t === 'range') { const r = rangeOf(st, g.k); return r[0] != null || r[1] != null; } return arr(st, g.k).length > 0; }
+  const count = (spec, st) => spec.filter(g => active(g, st)).length;
+
+  // ----- เงื่อนไขการจับคู่ -----
+  function has(st, k, vals) {
+    const sel = st[k]; if (!sel || !sel.length) return true;
+    const v = (vals || []).filter(x => x != null && x !== '');
+    return modeOf(st, k) === 'all' ? sel.every(s => v.includes(s)) : sel.some(s => v.includes(s));
+  }
+  function inRange(st, k, val) {
+    const r = rangeOf(st, k); if (r[0] == null && r[1] == null) return true;
+    if (val == null) return false;
+    return (r[0] == null || val >= r[0]) && (r[1] == null || val <= r[1]);
+  }
+  // ตัดกลุ่มที่กรองไม่ได้จริงออก (มีตัวเลือกน้อยกว่า 2 ค่า เช่น Rotation ที่ทุกใบเป็น A)
+  const prune = spec => spec.filter(g => g.t !== 'chips' || g.items.length > 1);
+  // เรียงตัวเลือกตามจำนวนการ์ดที่มี (มาก→น้อย) แล้วตามชื่อ · rows = การ์ดทั้งหมด, f(row) = ค่าของแถวนั้น
+  function items(rows, f, mk) {
+    const n = new Map(); rows.forEach(r => new Set((f(r) || []).filter(x => x != null && x !== '')).forEach(v => n.set(v, (n.get(v) || 0) + 1)));
+    return [...n.entries()].sort((a, b) => b[1] - a[1] || String(a[0]).localeCompare(String(b[0]), 'th')).map(([v]) => mk ? mk(v) : { v });
+  }
+  function reset(st) { for (const k of Object.keys(st)) delete st[k]; }
+
+  // ----- ผูกอีเวนต์ (เรียกครั้งเดียวต่อ root) · onChange() ถูกเรียกทุกครั้งที่ตัวกรองเปลี่ยน -----
+  function bind(root, spec, st, onChange) {
+    const byK = Object.fromEntries(spec.map(g => [g.k, g]));
+    const label = (k, v) => { const g = byK[k], it = g && g.items && g.items.find(x => x.v === v); return it ? (it.l == null ? it.v : it.l) : v; };
+    function sync() {
+      root.querySelectorAll('.mf-c').forEach(b => { const on = arr(st, b.dataset.mf).includes(b.dataset.v); b.classList.toggle('on', on); b.setAttribute('aria-pressed', on); });
+      root.querySelectorAll('.mf-g[data-g]').forEach(f => { const k = f.dataset.g, i = f.querySelector('legend>i'); if (i) { const n = arr(st, k).length; i.textContent = n; i.hidden = !n; } });
+      root.querySelectorAll('.mf-mode').forEach(b => { const all = modeOf(st, b.dataset.mfMode) === 'all'; b.classList.toggle('all', all); b.textContent = all ? 'ต้องตรงครบทุกอัน' : 'ตรงอันใดอันหนึ่ง'; b.title = 'กดเพื่อสลับ: ตรงอันใดอันหนึ่ง / ต้องตรงครบทุกอันที่เลือก'; });
+      root.querySelectorAll('input[data-mf-r]').forEach(i => { if (document.activeElement === i) return; const r = rangeOf(st, i.dataset.mfR)[+i.dataset.e]; i.value = r == null ? '' : r; });
+      const tags = [];
+      for (const g of spec) {
+        if (g.t === 'range') { const r = rangeOf(st, g.k); if (r[0] != null || r[1] != null) tags.push(`<button type="button" class="mf-tag" data-mf-rm="${esc(g.k)}">${esc(g.label)} ${r[0] == null ? '≤' + r[1] : r[1] == null ? '≥' + r[0] : r[0] + '–' + r[1]}<b>×</b></button>`); }
+        else for (const v of arr(st, g.k)) tags.push(`<button type="button" class="mf-tag" data-mf-rm="${esc(g.k)}" data-v="${esc(v)}">${esc(label(g.k, v))}<b>×</b></button>`);
+      }
+      const s = root.querySelector('.mf-sum'); if (s) s.innerHTML = tags.join('');
+      const an = root.querySelector('.mf-advn'); if (an) { const n = spec.filter(g => g.adv && active(g, st)).length; an.textContent = n ? '(' + n + ')' : ''; }
+    }
+    root.addEventListener('click', e => {
+      const c = e.target.closest('[data-mf]'), m = e.target.closest('[data-mf-mode]'), rm = e.target.closest('[data-mf-rm]'), more = e.target.closest('[data-mf-more]');
+      if (c) { const a = arr(st, c.dataset.mf), i = a.indexOf(c.dataset.v); i < 0 ? a.push(c.dataset.v) : a.splice(i, 1); }
+      else if (m) { st.__m = st.__m || {}; st.__m[m.dataset.mfMode] = modeOf(st, m.dataset.mfMode) === 'all' ? 'any' : 'all'; }
+      else if (rm) { const k = rm.dataset.mfRm; if (rm.dataset.v != null && rm.dataset.v !== '') { const a = arr(st, k), i = a.indexOf(rm.dataset.v); if (i >= 0) a.splice(i, 1); } else if (st.__r) delete st.__r[k]; }
+      else if (more) { const f = more.closest('.mf-g'), hid = f.querySelectorAll('.mf-chips .chip[data-x]'), open = more.dataset.open !== '1'; hid.forEach(b => { b.hidden = !open; }); more.dataset.open = open ? '1' : ''; const g = byK[more.dataset.mfMore]; more.textContent = open ? 'ย่อ' : `แสดงทั้งหมด (+${g.items.length - (g.limit || 0)})`; return; }
+      else return;
+      sync(); onChange();
+    });
+    root.addEventListener('input', e => {
+      const i = e.target.closest('input[data-mf-r]'); if (!i) return;
+      st.__r = st.__r || {}; const k = i.dataset.mfR, r = st.__r[k] || (st.__r[k] = [null, null]); r[+i.dataset.e] = num(i.value);
+      if (r[0] != null && r[1] != null && r[0] > r[1]) { /* ใส่สลับกัน: ใช้ตอนกรองโดยสลับให้เอง */ }
+      if (r[0] == null && r[1] == null) delete st.__r[k];
+      sync(); onChange();
+    });
+    sync();
+    return sync;
+  }
+  // ช่วงที่ผู้ใช้ใส่สลับกัน (ต่ำสุด > สูงสุด) → สลับให้เองตอนกรอง
+  const _in = inRange;
+  window.MF = { prune, items, render, bind, count, has, inRange: (st, k, v) => { const r = rangeOf(st, k); if (r[0] != null && r[1] != null && r[0] > r[1]) { return _in({ __r: { [k]: [r[1], r[0]] } }, k, v); } return _in(st, k, v); }, reset, active };
+})();
+
+</script>
 <script>
 const $=id=>document.getElementById(id);
 const MFS={};let SPEC=[];
@@ -137,6 +281,7 @@ function show(n){
  $("modal").classList.add("open");
 }
 function closeM(){$("modal").classList.remove("open")}
-init();
+try{init()}catch(err){document.getElementById("cnt").textContent="เกิดข้อผิดพลาด: "+err.message}
+document.addEventListener("error",e=>{const t=e.target;if(t&&t.tagName==="IMG"&&!window.__imgWarn){window.__imgWarn=1;document.getElementById("cnt").insertAdjacentHTML("afterend",'<div class="cnt" style="color:#ff6b6b">โหลดรูปไม่ได้ — ต้องวางโฟลเดอร์ images ไว้ข้างไฟล์ index.html</div>')}},true);
 </script>
 </body></html>
